@@ -29,7 +29,7 @@ export interface Course {
 export const coursesData: Course[] = [
   {
     id: "leadership-basics",
-    title: "Module 1",
+    title: "Module 1: Finding A Senior Home",
     description: "Learn the core principles of leading a Grandparents' Diary chapter effectively.",
     category: "Leadership",
     lessons: 6,
@@ -44,6 +44,7 @@ export const coursesData: Course[] = [
         content: {
           title: "Understanding Your Role as Chapter Lead",
           description: "Discover the key responsibilities and expectations of a chapter lead in the Grandparents' Diary organization.",
+          videoUrl: "/videos/module1-intro.mp4",
           sections: [
             {
               heading: "What is a Chapter Lead?",

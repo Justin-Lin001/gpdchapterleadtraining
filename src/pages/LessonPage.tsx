@@ -1,5 +1,5 @@
 import { useParams, Navigate, Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Header } from "@/components/Header";
 import { LessonSidebar } from "@/components/LessonSidebar";
 import { Button } from "@/components/ui/button";
@@ -12,6 +12,8 @@ import { toast } from "sonner";
 const LessonPage = () => {
   const { courseId, lessonId } = useParams();
   const [completed, setCompleted] = useState(false);
+  const [videoWatched, setVideoWatched] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
   
   const course = coursesData.find(c => c.id === courseId);
   const lesson = course?.lessonsList.find(l => l.id === lessonId);
@@ -23,8 +25,29 @@ const LessonPage = () => {
   const currentIndex = course.lessonsList.findIndex(l => l.id === lessonId);
   const nextLesson = course.lessonsList[currentIndex + 1];
   const isCompleted = lesson.completed || completed;
+  const hasVideo = !!lesson.content.videoUrl;
+  const canComplete = !hasVideo || videoWatched || isCompleted;
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const handleTimeUpdate = () => {
+      const watchedPercentage = (video.currentTime / video.duration) * 100;
+      if (watchedPercentage >= 90) {
+        setVideoWatched(true);
+      }
+    };
+
+    video.addEventListener('timeupdate', handleTimeUpdate);
+    return () => video.removeEventListener('timeupdate', handleTimeUpdate);
+  }, []);
 
   const handleMarkComplete = () => {
+    if (!canComplete) {
+      toast.error("Please watch the video before completing this lesson");
+      return;
+    }
     setCompleted(true);
     toast.success("Lesson completed! Great work! 🎉");
   };
@@ -64,12 +87,26 @@ const LessonPage = () => {
               )}
             </div>
 
-            {/* Video Placeholder */}
+            {/* Video */}
             {lesson.content.videoUrl && (
               <Card className="mb-8 overflow-hidden">
-                <div className="aspect-video bg-muted flex items-center justify-center">
-                  <p className="text-muted-foreground">Video content would appear here</p>
-                </div>
+                <video 
+                  ref={videoRef}
+                  className="w-full aspect-video"
+                  controls
+                  controlsList="nodownload"
+                >
+                  <source src={lesson.content.videoUrl} type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+                {!videoWatched && !isCompleted && (
+                  <CardContent className="pt-4">
+                    <p className="text-sm text-muted-foreground flex items-center gap-2">
+                      <CheckCircle2 className="w-4 h-4" />
+                      Watch at least 90% of the video to complete this lesson
+                    </p>
+                  </CardContent>
+                )}
               </Card>
             )}
 
@@ -110,7 +147,12 @@ const LessonPage = () => {
             {/* Action Buttons */}
             <div className="flex items-center justify-between pt-8 border-t">
               {!isCompleted ? (
-                <Button onClick={handleMarkComplete} size="lg" variant="gradient">
+                <Button 
+                  onClick={handleMarkComplete} 
+                  size="lg" 
+                  variant="gradient"
+                  disabled={!canComplete}
+                >
                   <CheckCircle2 className="w-5 h-5 mr-2" />
                   Mark as Complete
                 </Button>
