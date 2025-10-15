@@ -40,7 +40,7 @@ const Dashboard = () => {
                   Continue Learning
                 </Button>
                 <Button size="lg" variant="outline">
-                  Browse All Courses
+                  Browse All Modules
                 </Button>
               </div>
             </div>
@@ -132,9 +132,9 @@ const Dashboard = () => {
         </section>
       )}
 
-      {/* All Courses */}
+      {/* All Modules */}
       <section className="container mx-auto px-4 py-8 pb-16">
-        <h2 className="text-2xl font-bold mb-6">All Training Courses</h2>
+        <h2 className="text-2xl font-bold mb-6">All Training Modules</h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {coursesData.map((course) => (
             <CourseCard key={course.id} {...course} />

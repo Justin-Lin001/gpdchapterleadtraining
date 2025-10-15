@@ -29,7 +29,7 @@ export interface Course {
 export const coursesData: Course[] = [
   {
     id: "leadership-basics",
-    title: "Chapter Leadership Fundamentals",
+    title: "Module 1",
     description: "Learn the core principles of leading a Grandparents' Diary chapter effectively.",
     category: "Leadership",
     lessons: 6,
@@ -220,7 +220,7 @@ export const coursesData: Course[] = [
   },
   {
     id: "creative-writing",
-    title: "Creative Writing Workshop Techniques",
+    title: "Module 2",
     description: "Advanced methods for facilitating engaging creative writing sessions with seniors.",
     category: "Workshop Skills",
     lessons: 5,
@@ -345,7 +345,7 @@ export const coursesData: Course[] = [
   },
   {
     id: "community-impact",
-    title: "Measuring and Sharing Impact",
+    title: "Module 3",
     description: "Learn how to track, measure, and communicate your chapter's community impact.",
     category: "Impact",
     lessons: 4,

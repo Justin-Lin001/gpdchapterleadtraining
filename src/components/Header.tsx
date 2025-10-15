@@ -20,7 +20,7 @@ export const Header = () => {
             Dashboard
           </Link>
           <Link to="/courses" className="text-sm font-medium hover:text-primary transition-colors">
-            All Courses
+            All Modules
           </Link>
         </nav>
       </div>

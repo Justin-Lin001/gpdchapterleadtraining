@@ -54,7 +54,7 @@ export const CourseCard = ({ id, title, description, lessons, duration, progress
       <CardFooter>
         <Link to={`/course/${id}`} className="w-full">
           <Button className="w-full" variant={isCompleted ? "outline" : "default"}>
-            {progress === 0 ? "Start Course" : isCompleted ? "Review" : "Continue"}
+            {progress === 0 ? "Start Module" : isCompleted ? "Review" : "Continue"}
           </Button>
         </Link>
       </CardFooter>
