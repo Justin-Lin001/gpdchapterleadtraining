@@ -1,3 +1,14 @@
+export interface QuizQuestion {
+  question: string;
+  options: {
+    A: string;
+    B: string;
+    C: string;
+    D: string;
+  };
+  answer: string;
+}
+
 export interface Lesson {
   id: string;
   title: string;
@@ -7,6 +18,7 @@ export interface Lesson {
     title: string;
     description: string;
     videoUrl?: string;
+    quizQuestions?: QuizQuestion[];
     sections: {
       heading: string;
       content: string;
@@ -30,191 +42,143 @@ export const coursesData: Course[] = [
   {
     id: "leadership-basics",
     title: "Module 1: Finding A Senior Home",
-    description: "Learn the core principles of leading a Grandparents' Diary chapter effectively.",
+    description: "Learn how to find and connect with senior homes in your community.",
     category: "Leadership",
-    lessons: 6,
-    duration: "2.5 hours",
-    progress: 45,
+    lessons: 2,
+    duration: "45 min",
+    progress: 0,
     lessonsList: [
       {
         id: "lesson-1",
-        title: "Understanding Your Role as Chapter Lead",
+        title: "Introduction Video",
         duration: "25 min",
-        completed: true,
+        completed: false,
         content: {
-          title: "Understanding Your Role as Chapter Lead",
-          description: "Discover the key responsibilities and expectations of a chapter lead in the Grandparents' Diary organization.",
+          title: "Finding A Senior Home - Introduction",
+          description: "Watch this video to learn the essential steps for finding and connecting with senior homes.",
           videoUrl: "/videos/module1-intro.mp4",
-          sections: [
-            {
-              heading: "What is a Chapter Lead?",
-              content: "A Chapter Lead is the primary coordinator and facilitator for a local Grandparents' Diary chapter. You serve as the bridge between volunteers, seniors, and the central organization, ensuring that creative writing workshops run smoothly and meaningfully impact your community."
-            },
-            {
-              heading: "Core Responsibilities",
-              content: "Your main duties include organizing regular writing sessions, recruiting and managing volunteers, maintaining relationships with senior centers, coordinating poetry memoir creation and distribution, and reporting progress to the central organization. You'll also be responsible for maintaining the quality standards that make our programs special."
-            },
-            {
-              heading: "Essential Skills",
-              content: "Successful chapter leads demonstrate strong organizational abilities, compassionate communication, creative problem-solving, and dedication to our mission. You don't need to be a professional writer or teacher—just someone who cares deeply about connecting generations through storytelling."
-            }
-          ],
+          sections: [],
           keyTakeaways: [
-            "Chapter Leads are the heart of local GPD operations",
-            "Balance administrative duties with relationship building",
-            "Focus on creating meaningful intergenerational connections",
-            "You're part of a supportive network—never alone in this role"
+            "Research multiple senior homes (5-10) in your area",
+            "Document key information for each facility",
+            "Reach out to the recreation director or activity coordinator",
+            "Use Google Maps to find local senior homes",
+            "Follow up consistently to secure a partnership"
           ]
         }
       },
       {
         id: "lesson-2",
-        title: "Building Relationships with Senior Centers",
-        duration: "30 min",
-        completed: true,
-        content: {
-          title: "Building Relationships with Senior Centers",
-          description: "Learn how to establish and maintain strong partnerships with geriatric centers and senior living facilities.",
-          sections: [
-            {
-              heading: "Making First Contact",
-              content: "Start by researching local senior centers, retirement communities, and assisted living facilities. Reach out to activity directors or community coordinators with a clear, compelling introduction to Grandparents' Diary. Share our mission, success stories, and the specific benefits our program brings to residents."
-            },
-            {
-              heading: "Presenting the Program",
-              content: "Prepare a brief presentation or information packet that explains how our workshops work, time commitments required, and the meaningful outcomes for participants. Emphasize that our program is free, volunteer-led, and designed to combat loneliness while celebrating seniors' life stories."
-            },
-            {
-              heading: "Maintaining Partnerships",
-              content: "Regular communication is key. Check in with facility coordinators monthly, share updates and success stories, be responsive to their scheduling needs, and show appreciation for their support. Strong partnerships make it easier to sustain programs long-term."
-            }
-          ],
-          keyTakeaways: [
-            "Activity directors are your key contacts at facilities",
-            "Lead with impact stories and clear program benefits",
-            "Flexibility and reliability build lasting partnerships",
-            "Document your agreements and maintain regular communication"
-          ]
-        }
-      },
-      {
-        id: "lesson-3",
-        title: "Volunteer Recruitment and Management",
-        duration: "35 min",
-        completed: false,
-        content: {
-          title: "Volunteer Recruitment and Management",
-          description: "Master the art of finding, training, and retaining dedicated volunteers for your chapter.",
-          sections: [
-            {
-              heading: "Where to Find Volunteers",
-              content: "Recruit from local high schools, colleges, community centers, places of worship, and online volunteer platforms. Partner with school community service coordinators, reach out to writing clubs, and leverage social media to spread the word about opportunities."
-            },
-            {
-              heading: "Volunteer Training",
-              content: "Provide clear training on our creative writing approach, active listening techniques, respect and empathy when working with seniors, and our poetry memoir creation process. Ensure volunteers understand both the creative and administrative aspects of their role."
-            },
-            {
-              heading: "Retention Strategies",
-              content: "Keep volunteers engaged by recognizing their contributions, providing ongoing support and feedback, creating a sense of community among your team, and celebrating the impact they're making. Regular appreciation goes a long way."
-            }
-          ],
-          keyTakeaways: [
-            "Diverse recruitment sources bring fresh perspectives",
-            "Thorough training sets volunteers up for success",
-            "Recognition and community keep volunteers committed",
-            "Regular check-ins help address concerns early"
-          ]
-        }
-      },
-      {
-        id: "lesson-4",
-        title: "Facilitating Meaningful Writing Sessions",
-        duration: "40 min",
-        completed: false,
-        content: {
-          title: "Facilitating Meaningful Writing Sessions",
-          description: "Learn techniques for creating engaging, compassionate creative writing workshops with seniors.",
-          sections: [
-            {
-              heading: "Session Structure",
-              content: "A typical session includes: warm welcome and introductions (5-10 min), creative prompt or theme introduction (10 min), guided writing and storytelling time (30-40 min), sharing and discussion (15-20 min), and closing reflection (5 min). Flexibility is important based on group dynamics."
-            },
-            {
-              heading: "Creative Prompts",
-              content: "Use memory-focused prompts like 'A Person Who Changed My Life,' 'My Favorite Season and Why,' or 'A Moment of Joy I'll Never Forget.' Keep prompts open-ended, positive, and accessible. Seniors should feel free to interpret prompts in their own way."
-            },
-            {
-              heading: "Creating Safe Space",
-              content: "Establish ground rules of respect and confidentiality. Encourage sharing without pressure. Listen actively and validate every story shared. Remember that for many seniors, this may be their first time expressing these memories creatively."
-            }
-          ],
-          keyTakeaways: [
-            "Balance structure with flexibility in sessions",
-            "Memory prompts unlock meaningful stories",
-            "Active listening is as important as writing",
-            "Create an atmosphere of respect and celebration"
-          ]
-        }
-      },
-      {
-        id: "lesson-5",
-        title: "Poetry Memoir Creation Process",
-        duration: "30 min",
-        completed: false,
-        content: {
-          title: "Poetry Memoir Creation Process",
-          description: "Understand how to transform seniors' stories into beautiful poetry memoirs.",
-          sections: [
-            {
-              heading: "From Story to Poetry",
-              content: "Work with volunteers to identify key themes, emotions, and images from seniors' shared stories. Craft short poems that honor the essence of their memories. Focus on authenticity over perfection—these are personal tributes, not literary masterpieces."
-            },
-            {
-              heading: "Design and Presentation",
-              content: "Volunteers create visually appealing layouts featuring the poem, relevant imagery, and personal touches. Use quality paper and thoughtful design. These memoirs become cherished keepsakes for seniors and their families."
-            },
-            {
-              heading: "Quality Standards",
-              content: "Ensure every memoir reflects genuine care: clear, legible text; appropriate imagery; correct spelling and grammar; and personal touches that show thought and effort. Review all memoirs before distribution to maintain our standards."
-            }
-          ],
-          keyTakeaways: [
-            "Poetry memoirs honor seniors' life stories",
-            "Focus on emotional authenticity over poetic perfection",
-            "Quality design shows respect and care",
-            "These become treasured family keepsakes"
-          ]
-        }
-      },
-      {
-        id: "lesson-6",
-        title: "Reporting and Communication",
+        title: "Module 1 Quiz",
         duration: "20 min",
         completed: false,
         content: {
-          title: "Reporting and Communication",
-          description: "Learn how to effectively communicate with the central organization and track your chapter's impact.",
-          sections: [
+          title: "Module 1 Knowledge Check",
+          description: "Test your understanding of the key concepts from this module.",
+          quizQuestions: [
             {
-              heading: "Monthly Reporting",
-              content: "Submit monthly reports including: number of sessions held, seniors participated, volunteers involved, memoirs created and distributed, and any notable stories or challenges. Use the provided templates for consistency."
+              question: "Q1: What is the first step in finding a senior home?",
+              options: {
+                A: "Gathering your group of volunteers",
+                B: "Finding potential senior homes",
+                C: "Contacting the directors of operations for a list of seniors homes",
+                D: "Cold call senior homes in your area"
+              },
+              answer: "B"
             },
             {
-              heading: "Tracking Impact",
-              content: "Keep records of participant feedback, volunteer hours, facility partnerships, and community engagement. These metrics help demonstrate our collective impact and secure future support for the organization."
+              question: "Q2: From the list what is something you do NOT need to document?",
+              options: {
+                A: "Name of the senior home",
+                B: "Number of seniors at the location",
+                C: "Contact information",
+                D: "Name of activity/enrichment manager"
+              },
+              answer: "B"
             },
             {
-              heading: "Staying Connected",
-              content: "Attend monthly chapter lead meetings (virtual or in-person), participate in the shared Slack/communication channel, reach out for support when needed, and share best practices with other leads. We're stronger together."
+              question: "Q3: Which of the following is a key term we recommend to use when finding local senior homes?",
+              options: {
+                A: "facilites that cadre retirment parties",
+                B: "facilites that assist seniors",
+                C: "Old peoples residence",
+                D: "Seniors' residence"
+              },
+              answer: "D"
+            },
+            {
+              question: "Q4: Which method of contact is the best for an immediate response?",
+              options: {
+                A: "Email",
+                B: "Contact seniors at the senior home",
+                C: "Cold call",
+                D: "Both B and C"
+              },
+              answer: "C"
+            },
+            {
+              question: "Q5: How many senior home's information should you document while researching?",
+              options: {
+                A: "1-3",
+                B: "4-5",
+                C: "5-10",
+                D: "10+"
+              },
+              answer: "C"
+            },
+            {
+              question: "Q6: Chapter leads are expected to find a senior home within 3 weeks of joining GPD, what should you do you help you accomplish this?",
+              options: {
+                A: "Start your research the day you join",
+                B: "Do follow up calls/emails",
+                C: "Reach out to a lot of senior homes including ones outside your city",
+                D: "Both A and B"
+              },
+              answer: "A"
+            },
+            {
+              question: "Q7: What is the app we advise you use to find local senior homes?",
+              options: {
+                A: "Google Maps",
+                B: "Senior's residences",
+                C: "GPD Maps",
+                D: "Both A and C"
+              },
+              answer: "A"
+            },
+            {
+              question: "Q8: Who is the recommended person to reach out to at the senior homes?",
+              options: {
+                A: "CEO/Franchisee",
+                B: "Residents of the senior home",
+                C: "Recreation director/activity coordinator",
+                D: "None of the above"
+              },
+              answer: "C"
+            },
+            {
+              question: "Q9: What is the MAIN reason you should create a list of senior homes?",
+              options: {
+                A: "To track which senior homes you have visited",
+                B: "To track which senior homes you have reached out to",
+                C: "To have an organized place for contact information",
+                D: "To make a resource for other struggling chapter leads"
+              },
+              answer: "B"
+            },
+            {
+              question: "Q10: In what order is it recommended to reach out to senior homes?",
+              options: {
+                A: "Cold call then email",
+                B: "Visit in person then phone call",
+                C: "Visit in person then cold-calling then emailing them",
+                D: "email them about your visit then visiting in person then finally a cold-call"
+              },
+              answer: "D"
             }
           ],
-          keyTakeaways: [
-            "Regular reporting helps track organizational impact",
-            "Documentation supports future growth and funding",
-            "Communication channels keep you connected and supported",
-            "Your insights help improve the program for everyone"
-          ]
+          sections: [],
+          keyTakeaways: []
         }
       }
     ]
