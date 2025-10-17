@@ -40,21 +40,13 @@ const LessonPage = () => {
 
     const handleEnded = () => {
       setVideoWatched(true);
-      toast.success("Video completed! You can now proceed to the quiz.");
+      setCompleted(true);
+      toast.success("Video completed! You can now proceed to the next lesson.");
     };
 
     video.addEventListener('ended', handleEnded);
     return () => video.removeEventListener('ended', handleEnded);
   }, []);
-
-  const handleMarkComplete = () => {
-    if (!canComplete) {
-      toast.error("Please watch the full video before completing this lesson");
-      return;
-    }
-    setCompleted(true);
-    toast.success("Lesson completed! Great work! 🎉");
-  };
 
   const handleQuizComplete = () => {
     setCompleted(true);
@@ -196,43 +188,6 @@ const LessonPage = () => {
               </Card>
             )}
 
-            {/* Action Buttons */}
-            {!isQuizLocked && !hasQuiz && (
-              <div className="flex items-center justify-between pt-8 border-t">
-                {!isCompleted ? (
-                  <Button 
-                    onClick={handleMarkComplete} 
-                    size="lg" 
-                    variant="gradient"
-                    disabled={!canComplete}
-                  >
-                    <CheckCircle2 className="w-5 h-5 mr-2" />
-                    Mark as Complete
-                  </Button>
-                ) : (
-                  <div className="flex items-center gap-2 text-success">
-                    <CheckCircle2 className="w-5 h-5" />
-                    <span className="font-medium">Completed</span>
-                  </div>
-                )}
-
-                {nextLesson && (
-                  <Link to={`/course/${courseId}/lesson/${nextLesson.id}`}>
-                    <Button 
-                      size="lg"
-                      disabled={!videoWatched && !isCompleted}
-                      className="relative"
-                    >
-                      {!videoWatched && !isCompleted && (
-                        <Lock className="w-4 h-4 mr-2" />
-                      )}
-                      Next Lesson
-                      <ChevronRight className="w-5 h-5 ml-2" />
-                    </Button>
-                  </Link>
-                )}
-              </div>
-            )}
 
             {isCompleted && nextLesson && (
               <div className="flex justify-end pt-8 border-t">
