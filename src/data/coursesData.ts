@@ -185,125 +185,144 @@ export const coursesData: Course[] = [
   },
   {
     id: "creative-writing",
-    title: "Module 2",
-    description: "Advanced methods for facilitating engaging creative writing sessions with seniors.",
+    title: "Module 2: What To Do During Sessions",
+    description: "Learn how to conduct effective and engaging sessions at senior homes.",
     category: "Workshop Skills",
-    lessons: 5,
-    duration: "2 hours",
+    lessons: 2,
+    duration: "45 min",
     progress: 0,
     lessonsList: [
       {
         id: "lesson-1",
-        title: "Memory-Based Writing Prompts",
+        title: "Introduction Video",
         duration: "25 min",
         completed: false,
         content: {
-          title: "Memory-Based Writing Prompts",
-          description: "Explore effective prompts that unlock meaningful memories and stories.",
-          sections: [
-            {
-              heading: "Types of Memory Prompts",
-              content: "Sensory prompts (sounds, smells, tastes), milestone moments (first job, wedding day), seasonal memories, relationship-focused prompts, and place-based memories all work well. Variety keeps sessions fresh and engages different participants."
-            },
-            {
-              heading: "Adapting to Your Group",
-              content: "Observe which prompts resonate most with your participants. Some groups love nostalgic prompts about childhood, while others prefer reflecting on life lessons or family stories. Flexibility is key."
-            }
-          ],
+          title: "What To Do During Sessions - Introduction",
+          description: "Watch this video to learn the essential practices for conducting sessions at senior homes.",
+          videoUrl: "/videos/module2-intro.mp4",
+          sections: [],
           keyTakeaways: [
-            "Diverse prompts engage different memory types",
-            "Adapt based on participant responses",
-            "Positive framing encourages sharing",
-            "Open-ended prompts allow personal interpretation"
+            "Aim for weekly or biweekly session frequency",
+            "Build close relationships with consistent visits",
+            "Always bring paper, pens/pencils, and printed prompts",
+            "Introduce yourself at the beginning of each session",
+            "Be patient and flexible with seniors"
           ]
         }
       },
       {
         id: "lesson-2",
-        title: "Active Listening and Empathy",
-        duration: "30 min",
-        completed: false,
-        content: {
-          title: "Active Listening and Empathy",
-          description: "Develop skills for compassionate, engaged listening during storytelling sessions.",
-          sections: [
-            {
-              heading: "The Art of Listening",
-              content: "Give full attention without interrupting, maintain eye contact and open body language, respond with empathy and validation, and ask clarifying questions that show genuine interest. Listening is a gift you give participants."
-            }
-          ],
-          keyTakeaways: [
-            "Deep listening honors seniors' experiences",
-            "Non-verbal cues show engagement",
-            "Empathy builds trust and openness",
-            "Questions demonstrate genuine interest"
-          ]
-        }
-      },
-      {
-        id: "lesson-3",
-        title: "Working with Diverse Abilities",
-        duration: "25 min",
-        completed: false,
-        content: {
-          title: "Working with Diverse Abilities",
-          description: "Learn to adapt sessions for participants with varying cognitive and physical abilities.",
-          sections: [
-            {
-              heading: "Cognitive Adaptations",
-              content: "For participants with memory challenges, use visual aids and photos, keep prompts simple and concrete, allow verbal responses if writing is difficult, and celebrate every contribution regardless of length or complexity."
-            }
-          ],
-          keyTakeaways: [
-            "Adapt methods to individual needs",
-            "Verbal storytelling is as valuable as written",
-            "Patience and flexibility are essential",
-            "Every person has stories worth sharing"
-          ]
-        }
-      },
-      {
-        id: "lesson-4",
-        title: "Group Dynamics and Facilitation",
+        title: "Module 2 Quiz",
         duration: "20 min",
         completed: false,
         content: {
-          title: "Group Dynamics and Facilitation",
-          description: "Master the skills needed to manage group dynamics and create positive session flow.",
-          sections: [
+          title: "Module 2 Knowledge Check",
+          description: "Test your understanding of the key concepts about conducting sessions.",
+          quizQuestions: [
             {
-              heading: "Managing Group Energy",
-              content: "Balance quiet reflection with group discussion, encourage shy participants without pressure, gently redirect overly dominant speakers, and maintain a positive, supportive atmosphere throughout the session."
+              question: "Q1: What is the minimum session frequency?",
+              options: {
+                A: "2 or 3 times per week",
+                B: "Weekly or biweekly",
+                C: "Once a month",
+                D: "Bimonthly"
+              },
+              answer: "B"
+            },
+            {
+              question: "Q2: Why should you aim for weekly sessions?",
+              options: {
+                A: "To build close relationships",
+                B: "To give the seniors citizens consistent meaningful and joyful times",
+                C: "To make sure that the senior citizens who might have dementia to not forget about things they wish to write about",
+                D: "All of the above"
+              },
+              answer: "D"
+            },
+            {
+              question: "Q3: Which of the following items are NOT required for every visit ?",
+              options: {
+                A: "Paper",
+                B: "Pencils or pens",
+                C: "Printed poetry prompts",
+                D: "Volunteer sign in forms"
+              },
+              answer: "D"
+            },
+            {
+              question: "Q4: Sometimes NOT being able meeting the minimum session frequency is a result of which of the following?",
+              options: {
+                A: "Poor planning",
+                B: "Not having enough volunteers",
+                C: "Chapter lead not havign the time",
+                D: "Variability with senior home availability"
+              },
+              answer: "D"
+            },
+            {
+              question: "Q5: Why is bringing a volunteer sign in sheet sometimes not needed?",
+              options: {
+                A: "Volunteers aren't always required to show up",
+                B: "You can tell who's missing based on who tells you beforehand",
+                C: "If you know the volunteers well enough",
+                D: "Both B and C"
+              },
+              answer: "C"
+            },
+            {
+              question: "Q6: What is something important to remember to do?",
+              options: {
+                A: "Be patient and flexible with the seniors",
+                B: "Always introduce yourself at the beginning of each session",
+                C: "Some seniors may have memory problems",
+                D: "All of the above"
+              },
+              answer: "B"
+            },
+            {
+              question: "Q7: Why should you be patient and felxible when interacting with the seniors??",
+              options: {
+                A: "Some seniors prefer to talk instead of write",
+                B: "The seniors may need some time to remember ",
+                C: "The seniors might not be good with words",
+                D: "All of the above"
+              },
+              answer: "D"
+            },
+            {
+              question: "Q8: Why should you always introduce yourslef at the beginning of each session?",
+              options: {
+                A: "For the seniors to get to know you better",
+                B: "Every senior will forget who you are if you don't",
+                C: "Both A and B",
+                D: "For the seniors to not forget who you are"
+              },
+              answer: "A"
+            },
+            {
+              question: "Q9: Which of the following ISN'T an activity listed in the session format?",
+              options: {
+                A: "Questions of the day",
+                B: "Creative writing time",
+                C: "Poem reading",
+                D: "Quick break"
+              },
+              answer: "D"
+            },
+            {
+              question: "Q10: How long should each session be according to the format?",
+              options: {
+                A: "1.5 hours",
+                B: "2 hours",
+                C: "1 hour",
+                D: "45 minutes"
+              },
+              answer: "C"
             }
           ],
-          keyTakeaways: [
-            "Balance individual and group participation",
-            "Foster inclusive, respectful dialogue",
-            "Read the room and adjust accordingly",
-            "Every voice deserves to be heard"
-          ]
-        }
-      },
-      {
-        id: "lesson-5",
-        title: "Handling Sensitive Topics",
-        duration: "20 min",
-        completed: false,
-        content: {
-          title: "Handling Sensitive Topics",
-          description: "Navigate emotional or difficult topics with care and professionalism.",
-          sections: [
-            {
-              heading: "When Stories Get Heavy",
-              content: "Some memories involve loss, trauma, or sadness. Acknowledge emotions with compassion, don't rush past difficult feelings, offer breaks if needed, and know when to suggest professional support if someone seems overwhelmed."
-            }
-          ],
-          keyTakeaways: [
-            "Emotional stories require extra care",
-            "Validate feelings without trying to 'fix'",
-            "Know your limits and resources",
-            "Create space for all emotions"
-          ]
+          sections: [],
+          keyTakeaways: []
         }
       }
     ]
