@@ -329,103 +329,144 @@ export const coursesData: Course[] = [
   },
   {
     id: "community-impact",
-    title: "Module 3",
-    description: "Learn how to track, measure, and communicate your chapter's community impact.",
+    title: "Module 3: Reporting Progress",
+    description: "Learn how to effectively report and communicate your chapter's progress.",
     category: "Impact",
-    lessons: 4,
-    duration: "1.5 hours",
+    lessons: 2,
+    duration: "45 min",
     progress: 0,
     lessonsList: [
       {
         id: "lesson-1",
-        title: "Defining Success Metrics",
-        duration: "20 min",
+        title: "Introduction Video",
+        duration: "25 min",
         completed: false,
         content: {
-          title: "Defining Success Metrics",
-          description: "Identify meaningful ways to measure your chapter's success and impact.",
-          sections: [
-            {
-              heading: "Quantitative Metrics",
-              content: "Track sessions held, participants served, volunteers engaged, memoirs created, facilities partnered with, and volunteer hours contributed. These numbers tell part of the story."
-            },
-            {
-              heading: "Qualitative Impact",
-              content: "Collect participant testimonials, volunteer reflections, facility feedback, and stories of meaningful connections made. This narrative data captures the heart of our work."
-            }
-          ],
+          title: "Reporting Progress - Introduction",
+          description: "Watch this video to learn the essential practices for reporting your chapter's progress.",
+          videoUrl: "/videos/module3-intro.mp4",
+          sections: [],
           keyTakeaways: [
-            "Numbers and stories both matter",
-            "Track consistently for accurate data",
-            "Impact goes beyond simple metrics",
-            "Personal stories bring statistics to life"
+            "Consistently communicate with Directors of Operations",
+            "Complete check-in forms after every session",
+            "Document what works well and what needs improvement",
+            "Build warm relationships with senior homes",
+            "Share meaningful moments in monthly reflections"
           ]
         }
       },
       {
         id: "lesson-2",
-        title: "Collecting Feedback and Testimonials",
-        duration: "25 min",
+        title: "Module 3 Quiz",
+        duration: "20 min",
         completed: false,
         content: {
-          title: "Collecting Feedback and Testimonials",
-          description: "Learn effective methods for gathering meaningful feedback from participants and partners.",
-          sections: [
+          title: "Module 3 Knowledge Check",
+          description: "Test your understanding of the key concepts about reporting progress.",
+          quizQuestions: [
             {
-              heading: "Participant Surveys",
-              content: "Keep surveys short and accessible. Ask about enjoyment, meaningful connections, interest in future sessions, and open-ended questions about impact. Respect that not all seniors will want to complete surveys."
+              question: "Q1: Who should you be consistently communicasting with about your sessions?",
+              options: {
+                A: "Board of directors",
+                B: "Directors of operations",
+                C: "Vice president",
+                D: "President"
+              },
+              answer: "B"
+            },
+            {
+              question: "Q2: how often should you be making a check in form?",
+              options: {
+                A: "Every week",
+                B: "Biweekly",
+                C: "Every session",
+                D: "Every 2 sessions"
+              },
+              answer: "C"
+            },
+            {
+              question: "Q3: Which of the following is NOT something you need to note down on your check-in form?",
+              options: {
+                A: "Names of the seniors who attended",
+                B: "Name of the senior home",
+                C: "Number of volunteers",
+                D: "Number of seniors who attended"
+              },
+              answer: "A"
+            },
+            {
+              question: "Q4: What is something that you should report on the monthly reflection?",
+              options: {
+                A: "What's working not too well",
+                B: "What works  well",
+                C: "Suggestions for better support",
+                D: "All pf the above"
+              },
+              answer: "D"
+            },
+            {
+              question: "Q5: Which of the following is NOT a goal of a chapter lead?",
+              options: {
+                A: "Having a warm relationship with the senior home",
+                B: "Have meaningful conversations",
+                C: "Excellent communication with the seniors",
+                D: "All of the above are chapter lead goals that were listed"
+              },
+              answer: "C"
+            },
+            {
+              question: "Q6: Suppose you are in a weekly session with the seniors and one of the seniors start being rude and not listening. What is the best thing to do?",
+              options: {
+                A: "Report it on your weekly check-in form",
+                B: "Attempt to build a closer relationship while calming them down",
+                C: "Attempt to calm them down but stop engaging them if they aren't cooperating",
+                D: "Reach out to the GPD executive team for support"
+              },
+              answer: "B"
+            },
+            {
+              question: "Q7: Imagine a senior Who has had trouble with remembering things for a while suddenly remembers memories they had forgotten during creative writing. Where would you record it?",
+              options: {
+                A: "Weekly check-in form as something that worked well",
+                B: "Weekly check-in form as a special moment",
+                C: "Monthly reflection as something that worked well",
+                D: "All of the above"
+              },
+              answer: "C"
+            },
+            {
+              question: "Q8: Why is having meaningful conversations so important?",
+              options: {
+                A: "It helps build a warm relationship",
+                B: "Represents GPD's professionalism",
+                C: "Shows you actually care about the seniors",
+                D: "both A and C"
+              },
+              answer: "D"
+            },
+            {
+              question: "Q9: How often are the zoom meetings where you share updates??",
+              options: {
+                A: "Weekly",
+                B: "Biweekly",
+                C: "Monthly",
+                D: "Bimonthly"
+              },
+              answer: "D"
+            },
+            {
+              question: "Q10: How often are the Weekly check-in forms checked?",
+              options: {
+                A: "Every week",
+                B: "Every other week",
+                C: "Monthly",
+                D: "every other month"
+              },
+              answer: "B"
             }
           ],
-          keyTakeaways: [
-            "Make feedback gathering simple and optional",
-            "Focus on meaningful questions",
-            "Respect privacy and comfort levels",
-            "Testimonials are powerful advocacy tools"
-          ]
-        }
-      },
-      {
-        id: "lesson-3",
-        title: "Storytelling for Impact",
-        duration: "30 min",
-        completed: false,
-        content: {
-          title: "Storytelling for Impact",
-          description: "Master the art of sharing your chapter's impact stories effectively.",
-          sections: [
-            {
-              heading: "Crafting Impact Stories",
-              content: "Good impact stories include: specific details and context, emotional resonance, clear connection to mission, and outcomes or changes observed. Show don't just tell. Use photos when appropriate and permitted."
-            }
-          ],
-          keyTakeaways: [
-            "Stories make abstract impact concrete",
-            "Specific details create emotional connection",
-            "Always protect participant privacy",
-            "Diverse stories show breadth of impact"
-          ]
-        }
-      },
-      {
-        id: "lesson-4",
-        title: "Sharing Your Work Publicly",
-        duration: "15 min",
-        completed: false,
-        content: {
-          title: "Sharing Your Work Publicly",
-          description: "Learn how to appropriately share your chapter's work with the broader community.",
-          sections: [
-            {
-              heading: "Social Media Guidelines",
-              content: "Always get consent before sharing photos or stories. Focus on celebrating the work and impact, not identifying vulnerable individuals. Use our organizational hashtags and tags. Maintain professionalism and dignity in all posts."
-            }
-          ],
-          keyTakeaways: [
-            "Consent and privacy are non-negotiable",
-            "Share impact, not personal identifiers",
-            "Coordinate with central organization",
-            "Public sharing raises awareness and support"
-          ]
+          sections: [],
+          keyTakeaways: []
         }
       }
     ]
