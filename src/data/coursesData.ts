@@ -470,5 +470,166 @@ export const coursesData: Course[] = [
         }
       }
     ]
+  },
+  {
+    id: "troubleshooting",
+    title: "Module 4: Troubleshooting and Volunteering Guide",
+    description: "Learn how to handle common challenges and effectively manage volunteers.",
+    category: "Operations",
+    lessons: 3,
+    duration: "60 min",
+    progress: 0,
+    lessonsList: [
+      {
+        id: "lesson-1",
+        title: "Troubleshooting - Part 1",
+        duration: "20 min",
+        completed: false,
+        content: {
+          title: "Troubleshooting Common Challenges - Part 1",
+          description: "Watch this video to learn effective strategies for outreach and increasing participation.",
+          videoUrl: "/videos/module4-intro.mp4",
+          sections: [],
+          keyTakeaways: [
+            "Cold calls help familiarize senior homes with your voice",
+            "Emphasize the benefits of working with GPD",
+            "Plan far ahead to increase participation levels",
+            "Advertise sessions throughout the senior home"
+          ]
+        }
+      },
+      {
+        id: "lesson-2",
+        title: "Volunteering Guide - Part 2",
+        duration: "20 min",
+        completed: false,
+        content: {
+          title: "Working with Seniors and Managing Volunteers - Part 2",
+          description: "Watch this video to learn how to support seniors with various conditions and recruit volunteers.",
+          videoUrl: "/videos/module5-intro.mp4",
+          sections: [],
+          keyTakeaways: [
+            "Be patient with seniors who have different conditions",
+            "Adapt communication methods to individual needs",
+            "Recruit responsible students in your area",
+            "Aim for 3-5 volunteers per session"
+          ]
+        }
+      },
+      {
+        id: "lesson-3",
+        title: "Module 4 Quiz",
+        duration: "20 min",
+        completed: false,
+        content: {
+          title: "Module 4 Knowledge Check",
+          description: "Test your understanding of troubleshooting and volunteer management.",
+          quizQuestions: [
+            {
+              question: "Q1: Which of the following ISN'T something listed to help successfully outreach senior homes?",
+              options: {
+                A: "Playing the high school card",
+                B: "Emphasize the benefits of working with GPD",
+                C: "Giving the senior home a phone call",
+                D: "All of the above are listed on the slideshow"
+              },
+              answer: "D"
+            },
+            {
+              question: "Q2: True or false: Playing the high schooler card when reaching out to senior homes helps quite a bit?",
+              options: {
+                A: "True, the senior homes belive being younger means you are more inclined to do what you belive in.",
+                B: "True, the senior homes tend to like the youth especially because its for a good cause",
+                C: "False, The senior homes don't care about how old you are.",
+                D: "False, The senior homes don't get swayed by age very easily"
+              },
+              answer: "C"
+            },
+            {
+              question: "Q3: Why is a \"cold call\" a good way to outrach senior homes?",
+              options: {
+                A: "It's much harder to avoid an email than a phone call",
+                B: "There aren't any delays in communications with phone calls",
+                C: "Your voice can help them familiarize you",
+                D: "Emails aren't very informative when compared to phone calls"
+              },
+              answer: "C"
+            },
+            {
+              question: "Q4: How can you increase your participation levels?",
+              options: {
+                A: "Plan far ahead ",
+                B: "Advertize the meeting anywhere in the senior home",
+                C: "Tell the seniors beforehand",
+                D: "All of the above"
+              },
+              answer: "D"
+            },
+            {
+              question: "Q5: Which of the following isn't a possible condition listed in the video?",
+              options: {
+                A: "Difficulties with speech",
+                B: "Hearing loss",
+                C: "Introversion",
+                D: "Dementia"
+              },
+              answer: "A"
+            },
+            {
+              question: "Q6: A senior attends the session that you haven't seen before. He seems to stumble over his words often and mix them up. What is the best way to help them during the session?",
+              options: {
+                A: "Be more verbal",
+                B: "Use smaller fonts",
+                C: "Use other words that arendon't look or sound very similar",
+                D: "Write the instructions down on a piece of paper for them to read at any time"
+              },
+              answer: "A"
+            },
+            {
+              question: "Q7: A senior who usually attends meetings but sometimes misses them. They exhibit problems with following the directions. What is crucial to help them during the session",
+              options: {
+                A: "Be patient with them",
+                B: "Give them written notes for them to read at any time",
+                C: "Start wtih smaller activities first",
+                D: "None of the above"
+              },
+              answer: "A"
+            },
+            {
+              question: "Q8: Why is being patient with the seniors who have conditions necessary?",
+              options: {
+                A: "Their conditions can affect how they understand instructions",
+                B: "It could hurt their feelings",
+                C: "It could hurt GPD's image",
+                D: "A and B"
+              },
+              answer: "D"
+            },
+            {
+              question: "Q9: How should you choose volunteers?",
+              options: {
+                A: "Recruit students in the area",
+                B: "Recruit responsible adults in the area",
+                C: "Recruit anyone willing to help in the area",
+                D: "All of the above"
+              },
+              answer: "A"
+            },
+            {
+              question: "Q10: How many volunteers should You aim for for each session?",
+              options: {
+                A: "5-7",
+                B: "3-5",
+                C: "same number of volunteers as participants ",
+                D: "None of the above"
+              },
+              answer: "B"
+            }
+          ],
+          sections: [],
+          keyTakeaways: []
+        }
+      }
+    ]
   }
 ];
