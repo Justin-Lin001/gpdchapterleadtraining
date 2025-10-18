@@ -9,15 +9,55 @@ import { Quiz } from "@/components/Quiz";
 import { coursesData } from "@/data/coursesData";
 import { ArrowLeft, CheckCircle2, ChevronRight, Lightbulb, Lock } from "lucide-react";
 import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
 
 const LessonPage = () => {
   const { courseId, lessonId } = useParams();
   const [completed, setCompleted] = useState(false);
   const [videoWatched, setVideoWatched] = useState(false);
+  const [loading, setLoading] = useState(true);
   const videoRef = useRef<HTMLVideoElement>(null);
   
   const course = coursesData.find(c => c.id === courseId);
   const lesson = course?.lessonsList.find(l => l.id === lessonId);
+
+  useEffect(() => {
+    // Reset state when lesson changes
+    setCompleted(false);
+    setVideoWatched(false);
+    
+    // Load completion status from database
+    const loadProgress = async () => {
+      try {
+        const { data: { user } } = await supabase.auth.getUser();
+        if (!user) {
+          setLoading(false);
+          return;
+        }
+
+        const { data, error } = await (supabase as any)
+          .from('lesson_completions')
+          .select('*')
+          .eq('user_id', user.id)
+          .eq('course_id', courseId!)
+          .eq('lesson_id', lessonId!)
+          .maybeSingle();
+
+        if (error) {
+          console.error('Error loading progress:', error);
+        } else if (data) {
+          setCompleted(true);
+          setVideoWatched(true);
+        }
+      } catch (error) {
+        console.error('Error loading progress:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadProgress();
+  }, [courseId, lessonId]);
 
   if (!course || !lesson) {
     return <Navigate to="/" replace />;
@@ -26,10 +66,9 @@ const LessonPage = () => {
   const currentIndex = course.lessonsList.findIndex(l => l.id === lessonId);
   const nextLesson = course.lessonsList[currentIndex + 1];
   const previousLesson = course.lessonsList[currentIndex - 1];
-  const isCompleted = lesson.completed || completed;
+  const isCompleted = completed;
   const hasVideo = !!lesson.content.videoUrl;
   const hasQuiz = !!lesson.content.quizQuestions;
-  const canComplete = !hasVideo || videoWatched || isCompleted;
   
   // Check if previous lesson (video) is completed for quiz access
   const isQuizLocked = hasQuiz && previousLesson && !previousLesson.completed && !videoWatched;
@@ -38,20 +77,70 @@ const LessonPage = () => {
     const video = videoRef.current;
     if (!video) return;
 
-    const handleEnded = () => {
+    const handleEnded = async () => {
       setVideoWatched(true);
       setCompleted(true);
-      toast.success("Video completed! You can now proceed to the next lesson.");
+      
+      // Save to database
+      try {
+        const { data: { user } } = await supabase.auth.getUser();
+        if (!user) return;
+
+        const { error } = await (supabase as any)
+          .from('lesson_completions')
+          .insert({
+            user_id: user.id,
+            course_id: courseId!,
+            lesson_id: lessonId!,
+          });
+
+        if (error && error.code !== '23505') { // Ignore duplicate key errors
+          console.error('Error saving progress:', error);
+        } else {
+          toast.success("Video completed! You can now proceed to the next lesson.");
+        }
+      } catch (error) {
+        console.error('Error saving progress:', error);
+      }
     };
 
     video.addEventListener('ended', handleEnded);
     return () => video.removeEventListener('ended', handleEnded);
-  }, []);
+  }, [courseId, lessonId]);
 
-  const handleQuizComplete = () => {
+  const handleQuizComplete = async () => {
     setCompleted(true);
-    toast.success("Quiz completed! Great work! 🎉");
+    
+    // Save to database
+    try {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) return;
+
+      const { error } = await (supabase as any)
+        .from('lesson_completions')
+        .insert({
+          user_id: user.id,
+          course_id: courseId!,
+          lesson_id: lessonId!,
+        });
+
+      if (error && error.code !== '23505') { // Ignore duplicate key errors
+        console.error('Error saving progress:', error);
+      } else {
+        toast.success("Quiz completed! Great work! 🎉");
+      }
+    } catch (error) {
+      console.error('Error saving progress:', error);
+    }
   };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="text-lg">Loading...</div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-background">
@@ -167,7 +256,7 @@ const LessonPage = () => {
             )}
 
             {/* Key Takeaways */}
-            {!isQuizLocked && lesson.content.keyTakeaways.length > 0 && (
+            {!isQuizLocked && !hasVideo && lesson.content.keyTakeaways.length > 0 && (
               <Card className="mb-8 border-accent/50 bg-accent/5">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">

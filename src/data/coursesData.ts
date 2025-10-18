@@ -58,13 +58,7 @@ export const coursesData: Course[] = [
           description: "Watch this video to learn the essential steps for finding and connecting with senior homes.",
           videoUrl: "/videos/module1-intro.mp4",
           sections: [],
-          keyTakeaways: [
-            "Research multiple senior homes (5-10) in your area",
-            "Document key information for each facility",
-            "Reach out to the recreation director or activity coordinator",
-            "Use Google Maps to find local senior homes",
-            "Follow up consistently to secure a partnership"
-          ]
+          keyTakeaways: []
         }
       },
       {
@@ -202,13 +196,7 @@ export const coursesData: Course[] = [
           description: "Watch this video to learn the essential practices for conducting sessions at senior homes.",
           videoUrl: "/videos/module2-intro.mp4",
           sections: [],
-          keyTakeaways: [
-            "Aim for weekly or biweekly session frequency",
-            "Build close relationships with consistent visits",
-            "Always bring paper, pens/pencils, and printed prompts",
-            "Introduce yourself at the beginning of each session",
-            "Be patient and flexible with seniors"
-          ]
+          keyTakeaways: []
         }
       },
       {
@@ -346,13 +334,7 @@ export const coursesData: Course[] = [
           description: "Watch this video to learn the essential practices for reporting your chapter's progress.",
           videoUrl: "/videos/module3-intro.mp4",
           sections: [],
-          keyTakeaways: [
-            "Consistently communicate with Directors of Operations",
-            "Complete check-in forms after every session",
-            "Document what works well and what needs improvement",
-            "Build warm relationships with senior homes",
-            "Share meaningful moments in monthly reflections"
-          ]
+          keyTakeaways: []
         }
       },
       {
@@ -490,12 +472,7 @@ export const coursesData: Course[] = [
           description: "Watch this video to learn effective strategies for outreach and increasing participation.",
           videoUrl: "/videos/module4-intro.mp4",
           sections: [],
-          keyTakeaways: [
-            "Cold calls help familiarize senior homes with your voice",
-            "Emphasize the benefits of working with GPD",
-            "Plan far ahead to increase participation levels",
-            "Advertise sessions throughout the senior home"
-          ]
+          keyTakeaways: []
         }
       },
       {
@@ -508,12 +485,7 @@ export const coursesData: Course[] = [
           description: "Watch this video to learn how to support seniors with various conditions and recruit volunteers.",
           videoUrl: "/videos/module5-intro.mp4",
           sections: [],
-          keyTakeaways: [
-            "Be patient with seniors who have different conditions",
-            "Adapt communication methods to individual needs",
-            "Recruit responsible students in your area",
-            "Aim for 3-5 volunteers per session"
-          ]
+          keyTakeaways: []
         }
       },
       {
