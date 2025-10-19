@@ -110,6 +110,11 @@ const LessonPage = () => {
         if (error && error.code !== '23505') { // Ignore duplicate key errors
           console.error('Error saving progress:', error);
         } else {
+          // Update the completions map immediately
+          setLessonsCompletions(prev => ({
+            ...prev,
+            [lessonId!]: true
+          }));
           toast.success("Video completed! You can now proceed to the next lesson.");
         }
       } catch (error) {
@@ -141,6 +146,11 @@ const LessonPage = () => {
       if (error && error.code !== '23505') { // Ignore duplicate key errors
         console.error('Error saving progress:', error);
       } else {
+        // Update the completions map immediately
+        setLessonsCompletions(prev => ({
+          ...prev,
+          [lessonId!]: true
+        }));
         toast.success("Quiz completed! Great work! 🎉");
       }
     } catch (error) {
