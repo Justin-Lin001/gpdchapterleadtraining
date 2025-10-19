@@ -16,6 +16,8 @@ const LessonPage = () => {
   const [completed, setCompleted] = useState(false);
   const [videoWatched, setVideoWatched] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [lessonsCompletions, setLessonsCompletions] = useState<Record<string, boolean>>({});
+  const [quizStarted, setQuizStarted] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   
   const course = coursesData.find(c => c.id === courseId);
@@ -25,8 +27,9 @@ const LessonPage = () => {
     // Reset state when lesson changes
     setCompleted(false);
     setVideoWatched(false);
+    setQuizStarted(false);
     
-    // Load completion status from database
+    // Load completion status from database for ALL lessons in the course
     const loadProgress = async () => {
       try {
         const { data: { user } } = await supabase.auth.getUser();
@@ -35,19 +38,28 @@ const LessonPage = () => {
           return;
         }
 
-        const { data, error } = await (supabase as any)
+        // Load ALL completions for this course
+        const { data: allCompletions, error: allError } = await (supabase as any)
           .from('lesson_completions')
           .select('*')
           .eq('user_id', user.id)
-          .eq('course_id', courseId!)
-          .eq('lesson_id', lessonId!)
-          .maybeSingle();
+          .eq('course_id', courseId!);
 
-        if (error) {
-          console.error('Error loading progress:', error);
-        } else if (data) {
-          setCompleted(true);
-          setVideoWatched(true);
+        if (allError) {
+          console.error('Error loading all progress:', allError);
+        } else if (allCompletions) {
+          // Create a map of lesson_id to completion status
+          const completionsMap: Record<string, boolean> = {};
+          allCompletions.forEach((completion: any) => {
+            completionsMap[completion.lesson_id] = true;
+          });
+          setLessonsCompletions(completionsMap);
+          
+          // Check if current lesson is completed
+          if (completionsMap[lessonId!]) {
+            setCompleted(true);
+            setVideoWatched(true);
+          }
         }
       } catch (error) {
         console.error('Error loading progress:', error);
@@ -71,7 +83,8 @@ const LessonPage = () => {
   const hasQuiz = !!lesson.content.quizQuestions;
   
   // Check if previous lesson (video) is completed for quiz access
-  const isQuizLocked = hasQuiz && previousLesson && !previousLesson.completed && !videoWatched;
+  const isPreviousLessonCompleted = previousLesson ? lessonsCompletions[previousLesson.id] : true;
+  const isQuizLocked = hasQuiz && !isPreviousLessonCompleted;
 
   useEffect(() => {
     const video = videoRef.current;
@@ -110,6 +123,7 @@ const LessonPage = () => {
 
   const handleQuizComplete = async () => {
     setCompleted(true);
+    setQuizStarted(false);
     
     // Save to database
     try {
@@ -134,6 +148,10 @@ const LessonPage = () => {
     }
   };
 
+  const handleQuizStart = () => {
+    setQuizStarted(true);
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
@@ -151,6 +169,7 @@ const LessonPage = () => {
           courseId={courseId!}
           lessons={course.lessonsList}
           currentLessonId={lessonId!}
+          lessonsCompletions={lessonsCompletions}
         />
 
         <main className="flex-1 p-8">
@@ -188,7 +207,7 @@ const LessonPage = () => {
             </div>
 
             {/* Video */}
-            {lesson.content.videoUrl && !isQuizLocked && (
+            {lesson.content.videoUrl && !isQuizLocked && !quizStarted && (
               <Card className="mb-8 overflow-hidden">
                 <video 
                   ref={videoRef}
@@ -217,6 +236,37 @@ const LessonPage = () => {
                 )}
               </Card>
             )}
+            
+            {/* Show video after quiz completion */}
+            {lesson.content.videoUrl && !isQuizLocked && quizStarted && !isCompleted && (
+              <Card className="mb-8 border-warning bg-warning/5">
+                <CardContent className="pt-6">
+                  <div className="flex items-center gap-2 text-warning">
+                    <Lock className="w-5 h-5" />
+                    <span className="font-medium">Complete the quiz to re-watch the video</span>
+                  </div>
+                </CardContent>
+              </Card>
+            )}
+            
+            {lesson.content.videoUrl && !isQuizLocked && isCompleted && (
+              <Card className="mb-8 overflow-hidden">
+                <video 
+                  className="w-full aspect-video"
+                  controls
+                  controlsList="nodownload"
+                >
+                  <source src={lesson.content.videoUrl} type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+                <CardContent className="pt-4">
+                  <p className="text-sm text-success flex items-center gap-2">
+                    <CheckCircle2 className="w-4 h-4" />
+                    Lesson completed! You can re-watch the video anytime.
+                  </p>
+                </CardContent>
+              </Card>
+            )}
 
             {/* Quiz */}
             {hasQuiz && !isQuizLocked && !isCompleted && (
@@ -224,6 +274,7 @@ const LessonPage = () => {
                 <Quiz 
                   questions={lesson.content.quizQuestions!} 
                   onComplete={handleQuizComplete}
+                  onStart={handleQuizStart}
                 />
               </div>
             )}

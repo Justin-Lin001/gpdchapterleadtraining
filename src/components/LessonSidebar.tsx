@@ -13,15 +13,17 @@ interface LessonSidebarProps {
   courseId: string;
   lessons: Lesson[];
   currentLessonId: string;
+  lessonsCompletions: Record<string, boolean>;
 }
 
-export const LessonSidebar = ({ courseId, lessons, currentLessonId }: LessonSidebarProps) => {
+export const LessonSidebar = ({ courseId, lessons, currentLessonId, lessonsCompletions }: LessonSidebarProps) => {
   return (
     <aside className="w-80 bg-card border-r min-h-screen p-6">
       <h2 className="font-semibold text-lg mb-4">Course Content</h2>
       <nav className="space-y-2">
         {lessons.map((lesson, index) => {
           const isCurrent = lesson.id === currentLessonId;
+          const isCompleted = lessonsCompletions[lesson.id] || false;
           return (
             <Link
               key={lesson.id}
@@ -34,7 +36,7 @@ export const LessonSidebar = ({ courseId, lessons, currentLessonId }: LessonSide
               )}
             >
               <div className="flex-shrink-0 mt-0.5">
-                {lesson.completed ? (
+                {isCompleted ? (
                   <CheckCircle2 className="w-5 h-5 text-success" />
                 ) : isCurrent ? (
                   <PlayCircle className="w-5 h-5 text-primary" />

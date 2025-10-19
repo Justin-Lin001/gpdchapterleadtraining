@@ -9,14 +9,20 @@ import { QuizQuestion } from "@/data/coursesData";
 interface QuizProps {
   questions: QuizQuestion[];
   onComplete: () => void;
+  onStart?: () => void;
 }
 
-export const Quiz = ({ questions, onComplete }: QuizProps) => {
+export const Quiz = ({ questions, onComplete, onStart }: QuizProps) => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedAnswers, setSelectedAnswers] = useState<string[]>([]);
   const [showResults, setShowResults] = useState(false);
+  const [quizStarted, setQuizStarted] = useState(false);
 
   const handleAnswerSelect = (answer: string) => {
+    if (!quizStarted) {
+      setQuizStarted(true);
+      onStart?.();
+    }
     const newAnswers = [...selectedAnswers];
     newAnswers[currentQuestion] = answer;
     setSelectedAnswers(newAnswers);
