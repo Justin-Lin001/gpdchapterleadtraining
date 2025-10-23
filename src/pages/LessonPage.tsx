@@ -28,47 +28,7 @@ const LessonPage = () => {
     setCompleted(false);
     setVideoWatched(false);
     setQuizStarted(false);
-    
-    // Load completion status from database for ALL lessons in the course
-    const loadProgress = async () => {
-      try {
-        const { data: { user } } = await supabase.auth.getUser();
-        if (!user) {
-          setLoading(false);
-          return;
-        }
-
-        // Load ALL completions for this course
-        const { data: allCompletions, error: allError } = await (supabase as any)
-          .from('lesson_completions')
-          .select('*')
-          .eq('user_id', user.id)
-          .eq('course_id', courseId!);
-
-        if (allError) {
-          console.error('Error loading all progress:', allError);
-        } else if (allCompletions) {
-          // Create a map of lesson_id to completion status
-          const completionsMap: Record<string, boolean> = {};
-          allCompletions.forEach((completion: any) => {
-            completionsMap[completion.lesson_id] = true;
-          });
-          setLessonsCompletions(completionsMap);
-          
-          // Check if current lesson is completed
-          if (completionsMap[lessonId!]) {
-            setCompleted(true);
-            setVideoWatched(true);
-          }
-        }
-      } catch (error) {
-        console.error('Error loading progress:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    loadProgress();
+    setLoading(false);
   }, [courseId, lessonId]);
 
   if (!course || !lesson) {
@@ -90,72 +50,28 @@ const LessonPage = () => {
     const video = videoRef.current;
     if (!video) return;
 
-    const handleEnded = async () => {
+    const handleEnded = () => {
       setVideoWatched(true);
       setCompleted(true);
-      
-      // Save to database
-      try {
-        const { data: { user } } = await supabase.auth.getUser();
-        if (!user) return;
-
-        const { error } = await (supabase as any)
-          .from('lesson_completions')
-          .insert({
-            user_id: user.id,
-            course_id: courseId!,
-            lesson_id: lessonId!,
-          });
-
-        if (error && error.code !== '23505') { // Ignore duplicate key errors
-          console.error('Error saving progress:', error);
-        } else {
-          // Update the completions map immediately
-          setLessonsCompletions(prev => ({
-            ...prev,
-            [lessonId!]: true
-          }));
-          toast.success("Video completed! You can now proceed to the next lesson.");
-        }
-      } catch (error) {
-        console.error('Error saving progress:', error);
-      }
+      setLessonsCompletions(prev => ({
+        ...prev,
+        [lessonId!]: true
+      }));
+      toast.success("Video completed! You can now proceed to the quiz.");
     };
 
     video.addEventListener('ended', handleEnded);
     return () => video.removeEventListener('ended', handleEnded);
   }, [courseId, lessonId]);
 
-  const handleQuizComplete = async () => {
+  const handleQuizComplete = () => {
     setCompleted(true);
     setQuizStarted(false);
-    
-    // Save to database
-    try {
-      const { data: { user } } = await supabase.auth.getUser();
-      if (!user) return;
-
-      const { error } = await (supabase as any)
-        .from('lesson_completions')
-        .insert({
-          user_id: user.id,
-          course_id: courseId!,
-          lesson_id: lessonId!,
-        });
-
-      if (error && error.code !== '23505') { // Ignore duplicate key errors
-        console.error('Error saving progress:', error);
-      } else {
-        // Update the completions map immediately
-        setLessonsCompletions(prev => ({
-          ...prev,
-          [lessonId!]: true
-        }));
-        toast.success("Quiz completed! Great work! 🎉");
-      }
-    } catch (error) {
-      console.error('Error saving progress:', error);
-    }
+    setLessonsCompletions(prev => ({
+      ...prev,
+      [lessonId!]: true
+    }));
+    toast.success("Quiz completed! Great work! 🎉");
   };
 
   const handleQuizStart = () => {
