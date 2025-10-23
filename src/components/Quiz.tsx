@@ -162,9 +162,13 @@ export const Quiz = ({ questions, onComplete, onStart }: QuizProps) => {
           onValueChange={handleAnswerSelect}
         >
           {Object.entries(currentQ.options).map(([key, value]) => (
-            <div key={key} className="flex items-center space-x-3 rounded-lg border p-4 hover:bg-muted/50 cursor-pointer">
-              <RadioGroupItem value={key} id={`option-${key}`} />
-              <Label htmlFor={`option-${key}`} className="flex-1 cursor-pointer">
+            <div 
+              key={key} 
+              className="flex items-center space-x-3 rounded-lg border p-4 hover:bg-muted/50 cursor-pointer transition-colors"
+              onClick={() => handleAnswerSelect(key)}
+            >
+              <RadioGroupItem value={key} id={`option-${key}`} className="pointer-events-none" />
+              <Label htmlFor={`option-${key}`} className="flex-1 cursor-pointer pointer-events-none">
                 <span className="font-medium">{key}.</span> {value}
               </Label>
             </div>
