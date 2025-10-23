@@ -2,7 +2,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
-import { BookOpen, Clock, CheckCircle2 } from "lucide-react";
+import { BookOpen, CheckCircle2 } from "lucide-react";
 import { Link } from "react-router-dom";
 
 interface CourseCardProps {
@@ -37,10 +37,6 @@ export const CourseCard = ({ id, title, description, lessons, duration, progress
           <div className="flex items-center gap-1">
             <BookOpen className="w-4 h-4" />
             <span>{lessons} lessons</span>
-          </div>
-          <div className="flex items-center gap-1">
-            <Clock className="w-4 h-4" />
-            <span>{duration}</span>
           </div>
         </div>
         <div className="space-y-2">

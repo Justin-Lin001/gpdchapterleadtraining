@@ -55,7 +55,7 @@ export const Quiz = ({ questions, onComplete, onStart }: QuizProps) => {
   if (showResults) {
     const score = calculateScore();
     const percentage = Math.round((score / questions.length) * 100);
-    const passed = percentage >= 70;
+    const passed = percentage >= 80;
 
     return (
       <Card className={`border-2 ${passed ? "border-success" : "border-destructive"}`}>

@@ -4,16 +4,12 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { coursesData } from "@/data/coursesData";
-import { BookOpen, Award, Clock, TrendingUp } from "lucide-react";
+import { BookOpen, Award } from "lucide-react";
 import heroImage from "@/assets/hero-training.jpg";
 
 const Dashboard = () => {
   const totalLessons = coursesData.reduce((sum, course) => sum + course.lessons, 0);
-  const completedCourses = coursesData.filter(c => c.progress === 100).length;
-  const inProgressCourses = coursesData.filter(c => c.progress > 0 && c.progress < 100);
-  const avgProgress = Math.round(
-    coursesData.reduce((sum, course) => sum + course.progress, 0) / coursesData.length
-  );
+  const completedModules = coursesData.filter(c => c.progress === 100).length;
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-background via-muted/20 to-background">
@@ -61,7 +57,7 @@ const Dashboard = () => {
 
       {/* Stats Section */}
       <section className="container mx-auto px-4 py-8">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-2xl mx-auto">
           <Card>
             <CardContent className="pt-6">
               <div className="flex items-center gap-3">
@@ -83,54 +79,14 @@ const Dashboard = () => {
                   <Award className="w-6 h-6 text-success" />
                 </div>
                 <div>
-                  <p className="text-2xl font-bold">{completedCourses}</p>
-                  <p className="text-sm text-muted-foreground">Completed</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardContent className="pt-6">
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-lg bg-secondary/10 flex items-center justify-center">
-                  <Clock className="w-6 h-6 text-secondary" />
-                </div>
-                <div>
-                  <p className="text-2xl font-bold">{inProgressCourses.length}</p>
-                  <p className="text-sm text-muted-foreground">In Progress</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardContent className="pt-6">
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center">
-                  <TrendingUp className="w-6 h-6 text-accent" />
-                </div>
-                <div>
-                  <p className="text-2xl font-bold">{avgProgress}%</p>
-                  <p className="text-sm text-muted-foreground">Avg Progress</p>
+                  <p className="text-2xl font-bold">{completedModules}</p>
+                  <p className="text-sm text-muted-foreground">Completed Modules</p>
                 </div>
               </div>
             </CardContent>
           </Card>
         </div>
       </section>
-
-      {/* Continue Learning */}
-      {inProgressCourses.length > 0 && (
-        <section className="container mx-auto px-4 py-8">
-          <h2 className="text-2xl font-bold mb-6">Continue Learning</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {inProgressCourses.map((course) => (
-              <CourseCard key={course.id} {...course} />
-            ))}
-          </div>
-        </section>
-      )}
 
       {/* All Modules */}
       <section className="container mx-auto px-4 py-8 pb-16">
