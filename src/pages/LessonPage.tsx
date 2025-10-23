@@ -133,7 +133,7 @@ const LessonPage = () => {
             </div>
 
             {/* Video */}
-            {lesson.content.videoUrl && !isQuizLocked && !quizStarted && (
+            {lesson.content.videoUrl && !isQuizLocked && !quizStarted && !isCompleted && (
               <Card className="mb-8 overflow-hidden">
                 <video 
                   ref={videoRef}
