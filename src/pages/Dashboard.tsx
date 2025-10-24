@@ -6,10 +6,22 @@ import { Button } from "@/components/ui/button";
 import { coursesData } from "@/data/coursesData";
 import { BookOpen, Award } from "lucide-react";
 import heroImage from "@/assets/hero-training.jpg";
+import { useCourseProgress } from "@/hooks/useCourseProgress";
 
 const Dashboard = () => {
+  const { getTotalCompletedModules, getTotalCompletedLessons, getCourseProgressPercentage, loading } = useCourseProgress();
+  
   const totalLessons = coursesData.reduce((sum, course) => sum + course.lessons, 0);
-  const completedModules = coursesData.filter(c => c.progress === 100).length;
+  const completedModules = getTotalCompletedModules();
+  const completedLessons = getTotalCompletedLessons();
+  
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="text-lg">Loading your progress...</div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-background via-muted/20 to-background">
@@ -92,9 +104,16 @@ const Dashboard = () => {
       <section className="container mx-auto px-4 py-8 pb-16">
         <h2 className="text-2xl font-bold mb-6">All Training Modules</h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {coursesData.map((course) => (
-            <CourseCard key={course.id} {...course} />
-          ))}
+          {coursesData.map((course) => {
+            const progress = getCourseProgressPercentage(course.id);
+            return (
+              <CourseCard 
+                key={course.id} 
+                {...course} 
+                progress={progress}
+              />
+            );
+          })}
         </div>
       </section>
     </div>

@@ -9,27 +9,33 @@ import { Quiz } from "@/components/Quiz";
 import { coursesData } from "@/data/coursesData";
 import { ArrowLeft, CheckCircle2, ChevronRight, Lightbulb, Lock } from "lucide-react";
 import { toast } from "sonner";
-import { supabase } from "@/integrations/supabase/client";
+import { useProgress } from "@/hooks/useProgress";
 
 const LessonPage = () => {
   const { courseId, lessonId } = useParams();
   const [completed, setCompleted] = useState(false);
   const [videoWatched, setVideoWatched] = useState(false);
-  const [loading, setLoading] = useState(true);
-  const [lessonsCompletions, setLessonsCompletions] = useState<Record<string, boolean>>({});
   const [quizStarted, setQuizStarted] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   
   const course = coursesData.find(c => c.id === courseId);
   const lesson = course?.lessonsList.find(l => l.id === lessonId);
+  
+  const { lessonsCompletions, loading, markLessonComplete } = useProgress(
+    courseId || "",
+    course?.lessonsList.length || 0
+  );
 
   useEffect(() => {
-    // Reset state when lesson changes
-    setCompleted(false);
-    setVideoWatched(false);
-    setQuizStarted(false);
-    setLoading(false);
-  }, [courseId, lessonId]);
+    // Check if current lesson is already completed
+    if (lessonId && lessonsCompletions[lessonId]) {
+      setCompleted(true);
+    } else {
+      setCompleted(false);
+      setVideoWatched(false);
+      setQuizStarted(false);
+    }
+  }, [courseId, lessonId, lessonsCompletions]);
 
   if (!course || !lesson) {
     return <Navigate to="/" replace />;
@@ -50,27 +56,31 @@ const LessonPage = () => {
     const video = videoRef.current;
     if (!video) return;
 
-    const handleEnded = () => {
+    const handleEnded = async () => {
       setVideoWatched(true);
       setCompleted(true);
-      setLessonsCompletions(prev => ({
-        ...prev,
-        [lessonId!]: true
-      }));
+      
+      // Save progress to database
+      if (lessonId) {
+        await markLessonComplete(lessonId);
+      }
+      
       toast.success("Video completed! You can now proceed to the quiz.");
     };
 
     video.addEventListener('ended', handleEnded);
     return () => video.removeEventListener('ended', handleEnded);
-  }, [courseId, lessonId]);
+  }, [courseId, lessonId, markLessonComplete]);
 
-  const handleQuizComplete = () => {
+  const handleQuizComplete = async () => {
     setCompleted(true);
     setQuizStarted(false);
-    setLessonsCompletions(prev => ({
-      ...prev,
-      [lessonId!]: true
-    }));
+    
+    // Save progress to database
+    if (lessonId) {
+      await markLessonComplete(lessonId);
+    }
+    
     toast.success("Quiz completed! Great work! 🎉");
   };
 
