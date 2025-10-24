@@ -168,7 +168,7 @@ export const coursesData: Course[] = [
                 C: "Visit in person then cold-calling then emailing them",
                 D: "email them about your visit then visiting in person then finally a cold-call"
               },
-              answer: "D"
+              answer: "C"
             }
           ],
           sections: [],
