@@ -10,6 +10,7 @@ import { coursesData } from "@/data/coursesData";
 import { ArrowLeft, CheckCircle2, ChevronRight, Lightbulb, Lock } from "lucide-react";
 import { toast } from "sonner";
 import { useProgress } from "@/hooks/useProgress";
+import { useCourseProgress } from "@/hooks/useCourseProgress";
 
 const LessonPage = () => {
   const { courseId, lessonId } = useParams();
@@ -25,6 +26,25 @@ const LessonPage = () => {
     courseId || "",
     course?.lessonsList.length || 0
   );
+
+  const { progress, loading: progressLoading } = useCourseProgress();
+
+  // Check if all previous 4 modules are completed for final quiz access
+  const isFinalQuiz = courseId === "final-quiz";
+  const [allModulesCompleted, setAllModulesCompleted] = useState(false);
+
+  useEffect(() => {
+    if (!isFinalQuiz) return;
+
+    const requiredModules = ["leadership-basics", "creative-writing", "community-impact", "troubleshooting"];
+    
+    const allCompleted = requiredModules.every(moduleId => {
+      const moduleProgress = progress[moduleId];
+      return moduleProgress && moduleProgress.completed;
+    });
+
+    setAllModulesCompleted(allCompleted);
+  }, [isFinalQuiz, progress]);
 
   useEffect(() => {
     // Check if current lesson is already completed
@@ -50,7 +70,7 @@ const LessonPage = () => {
   
   // Check if previous lesson (video) is completed for quiz access
   const isPreviousLessonCompleted = previousLesson ? lessonsCompletions[previousLesson.id] : true;
-  const isQuizLocked = hasQuiz && !isPreviousLessonCompleted;
+  const isQuizLocked = hasQuiz && (!isPreviousLessonCompleted || (isFinalQuiz && !allModulesCompleted));
 
   useEffect(() => {
     const video = videoRef.current;
@@ -88,7 +108,7 @@ const LessonPage = () => {
     setQuizStarted(true);
   };
 
-  if (loading) {
+  if (loading || progressLoading) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-lg">Loading...</div>
@@ -135,7 +155,11 @@ const LessonPage = () => {
                   <CardContent className="pt-6">
                     <div className="flex items-center gap-2 text-warning">
                       <Lock className="w-5 h-5" />
-                      <span className="font-medium">Complete the previous lesson to unlock this quiz</span>
+                      <span className="font-medium">
+                        {isFinalQuiz 
+                          ? "Complete and pass all previous 4 modules to unlock the Final Quiz"
+                          : "Complete the previous lesson to unlock this quiz"}
+                      </span>
                     </div>
                   </CardContent>
                 </Card>

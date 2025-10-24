@@ -603,5 +603,120 @@ export const coursesData: Course[] = [
         }
       }
     ]
+  },
+  {
+    id: "final-quiz",
+    title: "Module 5: Final Quiz",
+    description: "Test your comprehensive understanding of all training modules. Requires completion of all previous modules.",
+    category: "Assessment",
+    lessons: 1,
+    duration: "30 min",
+    progress: 0,
+    lessonsList: [
+      {
+        id: "lesson-1",
+        title: "Final Quiz",
+        duration: "30 min",
+        completed: false,
+        content: {
+          title: "Final Assessment",
+          description: "This comprehensive quiz tests your knowledge across all training modules. You must achieve 80% to pass.",
+          quizQuestions: [
+            {
+              question: "Q1: You've reached out to several senior homes but haven't had any luck getting a response. What's the most effective way to move forward?",
+              options: {
+                A: "Wait a few more days and then send follow-up emails",
+                B: "Continue calling the same homes until someone answers",
+                C: "Re-contact the same homes using a formal script, reach out to new homes, and highlight your student-led initiative",
+                D: "Send an updated brochure and wait for responses"
+              },
+              answer: "C"
+            },
+            {
+              question: "Q2: Who is the most appropriate person to reach out to at a senior home when proposing a partnership?",
+              options: {
+                A: "Administrative assistant at the front desk",
+                B: "Recreation or activity coordinator",
+                C: "Facility nurse",
+                D: "CEO or Franchisee"
+              },
+              answer: "B"
+            },
+            {
+              question: "Q3: How should you determine the frequency of writing sessions with a senior home?",
+              options: {
+                A: "Hold weekly sessions no matter what",
+                B: "Only offer monthly sessions to avoid overcommitment",
+                C: "Aim for weekly or biweekly sessions, but adjust based on the senior home's availability",
+                D: "Let volunteers decide when they want to show up"
+              },
+              answer: "C"
+            },
+            {
+              question: "Q4: Which of the following items is NOT required at every session?",
+              options: {
+                A: "Volunteer sign-in form",
+                B: "Pens or pencils",
+                C: "Printed poetry prompts",
+                D: "Paper"
+              },
+              answer: "A"
+            },
+            {
+              question: "Q5: Why is it important to be patient and flexible when working with seniors?",
+              options: {
+                A: "Some may have memory or cognitive issues",
+                B: "Seniors prefer younger volunteers",
+                C: "Some may not enjoy writing at all",
+                D: "It helps speed up the session"
+              },
+              answer: "A"
+            },
+            {
+              question: "Q6: A new volunteer seems unsure about how to interact with seniors during the session. What's the best way to support them?",
+              options: {
+                A: "Let them figure it out during the session to build confidence",
+                B: "Brief them before the session and pair them with an experienced volunteer",
+                C: "Ask them to observe until they feel ready to jump in",
+                D: "Have them manage attendance instead of participating in activities"
+              },
+              answer: "B"
+            },
+            {
+              question: "Q7: Your sessions have low senior turnout. What is one effective way to increase attendance?",
+              options: {
+                A: "Go around the lobby and personally invite seniors before the session",
+                B: "Stop the sessions for a while until interest increases",
+                C: "Only rely on posters or flyers to advertise the session",
+                D: "Wait for the activity coordinator to remind seniors"
+              },
+              answer: "A"
+            },
+            {
+              question: "Q9: What's an effective way to keep volunteers engaged during writing sessions?",
+              options: {
+                A: "Rotate leadership tasks like greeting or guiding prompts among volunteers",
+                B: "Limit volunteer involvement to reduce confusion",
+                C: "Let volunteers choose whether or not to participate",
+                D: "Only allow the chapter lead to manage the session activities"
+              },
+              answer: "A"
+            },
+            {
+              question: "Q10: Two weeks into your role, you still haven't secured a senior home. What should you do next?",
+              options: {
+                A: "Take a break and try again in a few weeks",
+                B: "Limit outreach to homes closer to you",
+                C: "Reach out to more homes, follow up with past contacts, and refine your message",
+                D: "Wait for current leads to respond before trying new ones"
+              },
+              answer: "C"
+            }
+          ],
+          sections: [],
+          keyTakeaways: []
+        }
+      }
+    ]
   }
 ];
