@@ -382,7 +382,7 @@ export const coursesData: Course[] = [
                 A: "What's working not too well",
                 B: "What works  well",
                 C: "Suggestions for better support",
-                D: "All pf the above"
+                D: "All of the above"
               },
               answer: "D"
             },
