@@ -137,7 +137,7 @@ export const Quiz = ({ questions, onComplete, onStart }: QuizProps) => {
   }
 
   const currentQ = questions[currentQuestion];
-  const progress = ((currentQuestion + 1) / questions.length) * 100 * 0.9;
+  const progress = (currentQuestion) * 10;
 
   return (
     <Card>
