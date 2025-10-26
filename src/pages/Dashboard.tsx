@@ -2,7 +2,6 @@ import { Header } from "@/components/Header";
 import { CourseCard } from "@/components/CourseCard";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { coursesData } from "@/data/coursesData";
 import { BookOpen, Award } from "lucide-react";
 import heroImage from "@/assets/hero-training.jpg";
@@ -43,14 +42,6 @@ const Dashboard = () => {
                 Continue your journey to becoming an exceptional Grandparents' Diary chapter leader. 
                 Access comprehensive training modules designed to help you create meaningful impact in your community.
               </p>
-              <div className="flex gap-4">
-                <Button size="lg" variant="gradient">
-                  Continue Learning
-                </Button>
-                <Button size="lg" variant="outline">
-                  Browse All Modules
-                </Button>
-              </div>
             </div>
             <div className="relative">
               <div className="rounded-2xl overflow-hidden shadow-2xl">
