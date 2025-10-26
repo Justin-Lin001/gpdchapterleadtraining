@@ -693,6 +693,16 @@ export const coursesData: Course[] = [
               answer: "A"
             },
             {
+              question: "Q8: A senior says they're not in the mood to write today but would enjoy chatting. What should you do?",
+              options: {
+                A: "Tell them writing is required for today's session",
+                B: "Respect their preference and let them engage through conversation",
+                C: "Let them observe quietly until they're ready",
+                D: "Ask a volunteer to try convincing them to write"
+              },
+              answer: "B"
+            },
+            {
               question: "Q9: What's an effective way to keep volunteers engaged during writing sessions?",
               options: {
                 A: "Rotate leadership tasks like greeting or guiding prompts among volunteers",
