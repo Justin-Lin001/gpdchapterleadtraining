@@ -101,7 +101,7 @@ export const coursesData: Course[] = [
               answer: "D"
             },
             {
-              question: "Q4: Which method of contact is the best for an immediate response?",
+              question: "Q4: Which method of contact is the best for an immediate response if you CAN'T visit in person?",
               options: {
                 A: "Email",
                 B: "Contact seniors at the senior home",
@@ -121,7 +121,7 @@ export const coursesData: Course[] = [
               answer: "C"
             },
             {
-              question: "Q6: Chapter leads are expected to find a senior home within 3 weeks of joining GPD, what should you do you help you accomplish this?",
+              question: "Q6: Chapter leads are expected to find a senior home within 3 weeks of joining GPD, what can be done to help accomplish this?",
               options: {
                 A: "Start your research the day you join",
                 B: "Do follow up calls/emails",
