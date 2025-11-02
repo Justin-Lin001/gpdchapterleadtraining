@@ -111,7 +111,7 @@ export const coursesData: Course[] = [
               answer: "C"
             },
             {
-              question: "Q5: How many senior home's information should you document while researching?",
+              question: "Q5: Regarding the contact information of a senior home, how many senior homes should you document while researching?",
               options: {
                 A: "1-3",
                 B: "4-5",
