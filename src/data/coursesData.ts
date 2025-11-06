@@ -81,7 +81,7 @@ export const coursesData: Course[] = [
               answer: "B"
             },
             {
-              question: "Q2: From the list what is something you do NOT need to document?",
+              question: "Q2: From the list, what is something you do not need to document?",
               options: {
                 A: "Name of the senior home",
                 B: "Number of seniors at the location",
@@ -93,15 +93,15 @@ export const coursesData: Course[] = [
             {
               question: "Q3: Which of the following is a key term we recommend to use when finding local senior homes?",
               options: {
-                A: "facilites that cadre retirment parties",
-                B: "facilites that assist seniors",
+                A: "Facilities that cadre retirement parties",
+                B: "Facilities that assist seniors",
                 C: "Old peoples residence",
                 D: "Seniors' residence"
               },
               answer: "D"
             },
             {
-              question: "Q4: Which method of contact is the best for an immediate response if you CAN'T visit in person?",
+              question: "Q4: Which method of contact is the best for an immediate response if you cannot visit in person?",
               options: {
                 A: "Email",
                 B: "Contact seniors at the senior home",
@@ -121,10 +121,10 @@ export const coursesData: Course[] = [
               answer: "C"
             },
             {
-              question: "Q6: Chapter leads are expected to find a senior home within 3 weeks of joining GPD, what can be done to help accomplish this?",
+              question: "Q6: Chapter leads are expected to find a senior home within 3 weeks of joining GPD. What can be done to help accomplish this?",
               options: {
                 A: "Start your research the day you join",
-                B: "Do follow up calls/emails",
+                B: "Do follow-up calls and emails",
                 C: "Reach out to a lot of senior homes including ones outside your city",
                 D: "Both A and B"
               },
@@ -145,7 +145,7 @@ export const coursesData: Course[] = [
               options: {
                 A: "CEO/Franchisee",
                 B: "Residents of the senior home",
-                C: "Recreation director/activity coordinator",
+                C: "Recreation director or activity coordinator",
                 D: "None of the above"
               },
               answer: "C"
@@ -166,7 +166,7 @@ export const coursesData: Course[] = [
                 A: "Cold call then email",
                 B: "Visit in person then phone call",
                 C: "Visit in person then cold-calling then emailing them",
-                D: "email them about your visit then visiting in person then finally a cold-call"
+                D: "Email them about your visit then visit in person then finally cold-call"
               },
               answer: "C"
             }
@@ -222,37 +222,37 @@ export const coursesData: Course[] = [
               question: "Q2: Why should you aim for weekly sessions?",
               options: {
                 A: "To build close relationships",
-                B: "To give the seniors citizens consistent meaningful and joyful times",
-                C: "To make sure that the senior citizens who might have dementia to not forget about things they wish to write about",
+                B: "To give the senior citizens consistent meaningful and joyful times",
+                C: "To make sure that the senior citizens who might have dementia do not forget about things they wish to write about",
                 D: "All of the above"
               },
               answer: "D"
             },
             {
-              question: "Q3: Which of the following items are NOT required for every visit ?",
+              question: "Q3: Which of the following items are not required for every visit?",
               options: {
                 A: "Paper",
                 B: "Pencils or pens",
                 C: "Printed poetry prompts",
-                D: "Volunteer sign in forms"
+                D: "Volunteer sign-in forms"
               },
               answer: "D"
             },
             {
-              question: "Q4: Sometimes NOT being able meeting the minimum session frequency is a result of which of the following?",
+              question: "Q4: Sometimes not being able to meet the minimum session frequency is a result of which of the following?",
               options: {
                 A: "Poor planning",
                 B: "Not having enough volunteers",
-                C: "Chapter lead not havign the time",
+                C: "Chapter lead not having the time",
                 D: "Variability with senior home availability"
               },
               answer: "D"
             },
             {
-              question: "Q5: Why is bringing a volunteer sign in sheet sometimes not needed?",
+              question: "Q5: Why is bringing a volunteer sign-in sheet sometimes not needed?",
               options: {
-                A: "Volunteers aren't always required to show up",
-                B: "You can tell who's missing based on who tells you beforehand",
+                A: "Volunteers are not always required to show up",
+                B: "You can tell who is missing based on who tells you beforehand",
                 C: "If you know the volunteers well enough",
                 D: "Both B and C"
               },
@@ -263,33 +263,33 @@ export const coursesData: Course[] = [
               options: {
                 A: "Be patient and flexible with the seniors",
                 B: "Always introduce yourself at the beginning of each session",
-                C: "Some seniors may have memory problems",
+                C: "Encourage seniors to express themselves creatively",
                 D: "All of the above"
               },
               answer: "B"
             },
             {
-              question: "Q7: Why should you be patient and felxible when interacting with the seniors??",
+              question: "Q7: Why should you be patient and flexible when interacting with the seniors?",
               options: {
                 A: "Some seniors prefer to talk instead of write",
-                B: "The seniors may need some time to remember ",
+                B: "The seniors may need some time to remember",
                 C: "The seniors might not be good with words",
                 D: "All of the above"
               },
               answer: "D"
             },
             {
-              question: "Q8: Why should you always introduce yourslef at the beginning of each session?",
+              question: "Q8: Why should you always introduce yourself at the beginning of each session?",
               options: {
                 A: "For the seniors to get to know you better",
-                B: "Every senior will forget who you are if you don't",
+                B: "Every senior will forget who you are if you do not",
                 C: "Both A and B",
                 D: "For the seniors to not forget who you are"
               },
               answer: "A"
             },
             {
-              question: "Q9: Which of the following ISN'T an activity listed in the session format?",
+              question: "Q9: Which of the following is not an activity listed in the session format?",
               options: {
                 A: "Questions of the day",
                 B: "Creative writing time",
@@ -347,17 +347,17 @@ export const coursesData: Course[] = [
           description: "Test your understanding of the key concepts about reporting progress.",
           quizQuestions: [
             {
-              question: "Q1: Who should you be consistently communicasting with about your sessions?",
+              question: "Q1: Who should you be consistently communicating with about your sessions?",
               options: {
-                A: "Board of directors",
-                B: "Directors of operations",
-                C: "Vice president",
+                A: "Board of Directors",
+                B: "Directors of Operations",
+                C: "Vice President",
                 D: "President"
               },
               answer: "B"
             },
             {
-              question: "Q2: how often should you be making a check in form?",
+              question: "Q2: How often should you be making a check-in form?",
               options: {
                 A: "Every week",
                 B: "Biweekly",
@@ -367,7 +367,7 @@ export const coursesData: Course[] = [
               answer: "C"
             },
             {
-              question: "Q3: Which of the following is NOT something you need to note down on your check-in form?",
+              question: "Q3: Which of the following is not something you need to note down on your check-in form?",
               options: {
                 A: "Names of the seniors who attended",
                 B: "Name of the senior home",
@@ -379,42 +379,42 @@ export const coursesData: Course[] = [
             {
               question: "Q4: What is something that you should report on the monthly reflection?",
               options: {
-                A: "What's working not too well",
-                B: "What works  well",
+                A: "What is working not too well",
+                B: "What works well",
                 C: "Suggestions for better support",
                 D: "All of the above"
               },
               answer: "D"
             },
             {
-              question: "Q5: Which of the following is NOT a goal of a chapter lead?",
+              question: "Q5: Which of the following is not a goal of a chapter lead?",
               options: {
                 A: "Having a warm relationship with the senior home",
                 B: "Have meaningful conversations",
-                C: "Excellent communication with the seniors",
+                C: "Have excellent communication with the seniors",
                 D: "All of the above are chapter lead goals that were listed"
               },
               answer: "C"
             },
             {
-              question: "Q6: Suppose you are in a weekly session with the seniors and one of the seniors start being rude and not listening. What is the best thing to do?",
+              question: "Q6: What should you do when a senior is losing interest?",
               options: {
-                A: "Report it on your weekly check-in form",
-                B: "Attempt to build a closer relationship while calming them down",
-                C: "Attempt to calm them down but stop engaging them if they aren't cooperating",
-                D: "Reach out to the GPD executive team for support"
+                A: "Encourage them with a new activity",
+                B: "Attempt to build a closer relationship while engaging them again",
+                C: "Ignore them and focus on others",
+                D: "Report it to the GPD executive team"
               },
               answer: "B"
             },
             {
-              question: "Q7: Imagine a senior Who has had trouble with remembering things for a while suddenly remembers memories they had forgotten during creative writing. Where would you record it?",
+              question: "Q7: Imagine a senior who has had trouble with remembering things for a while suddenly remembers memories they had forgotten during creative writing. Where would you record it?",
               options: {
                 A: "Weekly check-in form as something that worked well",
                 B: "Weekly check-in form as a special moment",
                 C: "Monthly reflection as something that worked well",
-                D: "All of the above"
+                D: "Share it at the next team meeting"
               },
-              answer: "C"
+              answer: "B"
             },
             {
               question: "Q8: Why is having meaningful conversations so important?",
@@ -422,12 +422,12 @@ export const coursesData: Course[] = [
                 A: "It helps build a warm relationship",
                 B: "Represents GPD's professionalism",
                 C: "Shows you actually care about the seniors",
-                D: "both A and C"
+                D: "Both A and C"
               },
               answer: "D"
             },
             {
-              question: "Q9: How often are the zoom meetings where you share updates??",
+              question: "Q9: How often are the Zoom meetings where you share updates?",
               options: {
                 A: "Weekly",
                 B: "Biweekly",
@@ -437,12 +437,12 @@ export const coursesData: Course[] = [
               answer: "D"
             },
             {
-              question: "Q10: How often are the Weekly check-in forms checked?",
+              question: "Q10: How often are the weekly check-in forms checked?",
               options: {
                 A: "Every week",
                 B: "Every other week",
                 C: "Monthly",
-                D: "every other month"
+                D: "Every other month"
               },
               answer: "B"
             }
@@ -498,7 +498,7 @@ export const coursesData: Course[] = [
           description: "Test your understanding of troubleshooting and volunteer management.",
           quizQuestions: [
             {
-              question: "Q1: Which of the following ISN'T something listed to help successfully outreach senior homes?",
+              question: "Q1: Which of the following is not something listed to help successfully outreach to senior homes?",
               options: {
                 A: "Playing the high school card",
                 B: "Emphasize the benefits of working with GPD",
@@ -508,62 +508,62 @@ export const coursesData: Course[] = [
               answer: "D"
             },
             {
-              question: "Q2: True or false: Playing the high schooler card when reaching out to senior homes helps quite a bit?",
+              question: "Q2: True or false: Playing the high schooler card when reaching out to senior homes helps quite a bit.",
               options: {
-                A: "True, the senior homes belive being younger means you are more inclined to do what you belive in.",
-                B: "True, the senior homes tend to like the youth especially because its for a good cause",
-                C: "False, The senior homes don't care about how old you are.",
-                D: "False, The senior homes don't get swayed by age very easily"
+                A: "True, the senior homes believe being younger means you are more inclined to do what you believe in",
+                B: "True, the senior homes tend to like youth especially because it is for a good cause",
+                C: "False, the senior homes do not care about how old you are",
+                D: "False, the senior homes do not get swayed by age easily"
+              },
+              answer: "B"
+            },
+            {
+              question: "Q3: Why is a cold call a good way to outreach to senior homes?",
+              options: {
+                A: "It is much harder to avoid an email than a phone call",
+                B: "There are no delays in communication with phone calls",
+                C: "Your voice can help them familiarize themselves with you",
+                D: "Emails are not very informative compared to phone calls"
               },
               answer: "C"
             },
             {
-              question: "Q3: Why is a \"cold call\" a good way to outrach senior homes?",
+              question: "Q4: How can you increase the seniors' participation levels?",
               options: {
-                A: "It's much harder to avoid an email than a phone call",
-                B: "There aren't any delays in communications with phone calls",
-                C: "Your voice can help them familiarize you",
-                D: "Emails aren't very informative when compared to phone calls"
-              },
-              answer: "C"
-            },
-            {
-              question: "Q4: How can you increase your participation levels?",
-              options: {
-                A: "Plan far ahead ",
-                B: "Advertize the meeting anywhere in the senior home",
-                C: "Tell the seniors beforehand",
+                A: "Plan far ahead",
+                B: "Advertise the meeting anywhere in the senior home",
+                C: "Tell seniors about the next meeting beforehand",
                 D: "All of the above"
               },
               answer: "D"
             },
             {
-              question: "Q5: Which of the following isn't a possible condition listed in the video?",
+              question: "Q5: How can you identify when a senior has a condition and support them effectively?",
               options: {
-                A: "Difficulties with speech",
-                B: "Hearing loss",
-                C: "Introversion",
-                D: "Dementia"
+                A: "Observe their behavior and adjust communication style",
+                B: "Ask directly about their medical condition",
+                C: "Ignore signs of difficulty to avoid awkwardness",
+                D: "Wait for the staff to inform you"
               },
               answer: "A"
             },
             {
-              question: "Q6: A senior attends the session that you haven't seen before. He seems to stumble over his words often and mix them up. What is the best way to help them during the session?",
+              question: "Q6: A senior attends the session that you have not seen before. They seem to stumble over their words often and mix them up. What is the best way to help them during the session?",
               options: {
                 A: "Be more verbal",
                 B: "Use smaller fonts",
-                C: "Use other words that arendon't look or sound very similar",
+                C: "Use other words that do not look or sound very similar",
                 D: "Write the instructions down on a piece of paper for them to read at any time"
               },
               answer: "A"
             },
             {
-              question: "Q7: A senior who usually attends meetings but sometimes misses them. They exhibit problems with following the directions. What is crucial to help them during the session",
+              question: "Q7: A senior who usually attends sessions but sometimes misses them exhibits problems with following directions. What is the best way to help them during the session?",
               options: {
                 A: "Be patient with them",
                 B: "Give them written notes for them to read at any time",
-                C: "Start wtih smaller activities first",
-                D: "None of the above"
+                C: "Start with smaller activities first",
+                D: "Ask the staff to assist them directly"
               },
               answer: "A"
             },
@@ -571,8 +571,8 @@ export const coursesData: Course[] = [
               question: "Q8: Why is being patient with the seniors who have conditions necessary?",
               options: {
                 A: "Their conditions can affect how they understand instructions",
-                B: "It could hurt their feelings",
-                C: "It could hurt GPD's image",
+                B: "It could hurt their feelings if you rush them",
+                C: "It could create frustration or confusion",
                 D: "A and B"
               },
               answer: "D"
@@ -588,11 +588,11 @@ export const coursesData: Course[] = [
               answer: "A"
             },
             {
-              question: "Q10: How many volunteers should You aim for for each session?",
+              question: "Q10: How many volunteers should you aim for for each session?",
               options: {
                 A: "5-7",
                 B: "3-5",
-                C: "same number of volunteers as participants ",
+                C: "Same number of volunteers as participants",
                 D: "None of the above"
               },
               answer: "B"
@@ -623,7 +623,7 @@ export const coursesData: Course[] = [
           description: "This comprehensive quiz tests your knowledge across all training modules. You must achieve 80% to pass.",
           quizQuestions: [
             {
-              question: "Q1: You've reached out to several senior homes but haven't had any luck getting a response. What's the most effective way to move forward?",
+              question: "Q1: You have reached out to several senior homes but have not had any luck getting a response. What is the most effective way to move forward?",
               options: {
                 A: "Wait a few more days and then send follow-up emails",
                 B: "Continue calling the same homes until someone answers",
@@ -653,31 +653,31 @@ export const coursesData: Course[] = [
               answer: "C"
             },
             {
-              question: "Q4: Which of the following items is NOT required at every session?",
+              question: "Q4: What is the best way to ensure each session runs smoothly?",
               options: {
-                A: "Volunteer sign-in form",
-                B: "Pens or pencils",
-                C: "Printed poetry prompts",
-                D: "Paper"
+                A: "Prepare materials and prompts ahead of time",
+                B: "Rely on improvisation each time",
+                C: "Let seniors decide the format every week",
+                D: "Cancel sessions without preparation"
               },
               answer: "A"
             },
             {
-              question: "Q5: Why is it important to be patient and flexible when working with seniors?",
+              question: "Q5: What is an important way to support seniors during creative writing?",
               options: {
-                A: "Some may have memory or cognitive issues",
-                B: "Seniors prefer younger volunteers",
-                C: "Some may not enjoy writing at all",
-                D: "It helps speed up the session"
+                A: "Encourage them to express their memories freely",
+                B: "Focus only on grammar and structure",
+                C: "Rush them to finish writing on time",
+                D: "Avoid offering feedback"
               },
               answer: "A"
             },
             {
-              question: "Q6: A new volunteer seems unsure about how to interact with seniors during the session. What's the best way to support them?",
+              question: "Q6: A new volunteer seems unsure about how to interact with seniors during the session. What is the best way to support them?",
               options: {
                 A: "Let them figure it out during the session to build confidence",
                 B: "Brief them before the session and pair them with an experienced volunteer",
-                C: "Ask them to observe until they feel ready to jump in",
+                C: "Ask them to observe until they feel ready to join",
                 D: "Have them manage attendance instead of participating in activities"
               },
               answer: "B"
@@ -693,17 +693,17 @@ export const coursesData: Course[] = [
               answer: "A"
             },
             {
-              question: "Q8: A senior says they're not in the mood to write today but would enjoy chatting. What should you do?",
+              question: "Q8: A senior says they are not in the mood to write today but would enjoy chatting. What should you do?",
               options: {
                 A: "Tell them writing is required for today's session",
                 B: "Respect their preference and let them engage through conversation",
-                C: "Let them observe quietly until they're ready",
+                C: "Let them observe quietly until they are ready",
                 D: "Ask a volunteer to try convincing them to write"
               },
               answer: "B"
             },
             {
-              question: "Q9: What's an effective way to keep volunteers engaged during writing sessions?",
+              question: "Q9: What is an effective way to keep volunteers engaged during writing sessions?",
               options: {
                 A: "Rotate leadership tasks like greeting or guiding prompts among volunteers",
                 B: "Limit volunteer involvement to reduce confusion",
@@ -713,12 +713,12 @@ export const coursesData: Course[] = [
               answer: "A"
             },
             {
-              question: "Q10: Two weeks into your role, you still haven't secured a senior home. What should you do next?",
+              question: "Q10: Two weeks into your role, you still have not secured a senior home. What should you do next?",
               options: {
                 A: "Take a break and try again in a few weeks",
                 B: "Limit outreach to homes closer to you",
                 C: "Reach out to more homes, follow up with past contacts, and refine your message",
-                D: "Wait for current leads to respond before trying new ones"
+                D: "Wait for responses from the senior homes"
               },
               answer: "C"
             }
