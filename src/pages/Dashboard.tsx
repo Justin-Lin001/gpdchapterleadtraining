@@ -4,7 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { coursesData } from "@/data/coursesData";
 import { BookOpen, Award } from "lucide-react";
-import heroImage from "@/assets/hero-training.jpg";
+import heroImage from "@/assets/hero-dashboard.png";
 import { useCourseProgress } from "@/hooks/useCourseProgress";
 
 const Dashboard = () => {

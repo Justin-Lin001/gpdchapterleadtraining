@@ -18,6 +18,7 @@ const LessonPage = () => {
   const [videoWatched, setVideoWatched] = useState(false);
   const [quizStarted, setQuizStarted] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const lastValidTimeRef = useRef<number>(0);
   
   const course = coursesData.find(c => c.id === courseId);
   const lesson = course?.lessonsList.find(l => l.id === lessonId);
@@ -173,7 +174,16 @@ const LessonPage = () => {
                   ref={videoRef}
                   className="w-full aspect-video"
                   controls
-                  controlsList="nodownload"
+                  controlsList="nodownload noplaybackrate"
+                  onSeeking={(e) => {
+                    const video = e.currentTarget;
+                    if (video.currentTime > lastValidTimeRef.current) {
+                      video.currentTime = lastValidTimeRef.current;
+                    }
+                  }}
+                  onTimeUpdate={(e) => {
+                    lastValidTimeRef.current = e.currentTarget.currentTime;
+                  }}
                 >
                   <source src={lesson.content.videoUrl} type="video/mp4" />
                   Your browser does not support the video tag.

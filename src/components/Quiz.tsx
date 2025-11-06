@@ -57,6 +57,11 @@ export const Quiz = ({ questions, onComplete, onStart }: QuizProps) => {
     const percentage = Math.round((score / questions.length) * 100);
     const passed = percentage >= 80;
 
+    // Auto-complete if passed
+    if (passed) {
+      onComplete();
+    }
+
     return (
       <Card className={`border-2 ${passed ? "border-success" : "border-destructive"}`}>
         <CardHeader>
@@ -82,55 +87,13 @@ export const Quiz = ({ questions, onComplete, onStart }: QuizProps) => {
             </p>
           </div>
 
-          <div className="space-y-4">
-            {questions.map((q, index) => {
-              const userAnswer = selectedAnswers[index];
-              const isCorrect = userAnswer === q.answer;
-              
-              return (
-                <Card key={index} className={`border ${isCorrect ? "border-success/50 bg-success/5" : "border-destructive/50 bg-destructive/5"}`}>
-                  <CardContent className="pt-6">
-                    <div className="flex items-start gap-3 mb-2">
-                      {isCorrect ? (
-                        <CheckCircle2 className="w-5 h-5 text-success flex-shrink-0 mt-0.5" />
-                      ) : (
-                        <XCircle className="w-5 h-5 text-destructive flex-shrink-0 mt-0.5" />
-                      )}
-                      <div className="flex-1">
-                        <p className="font-medium mb-2">{q.question}</p>
-                        <p className="text-sm">
-                          <span className="text-muted-foreground">Your answer: </span>
-                          <span className={isCorrect ? "text-success" : "text-destructive"}>
-                            {userAnswer}. {q.options[userAnswer as keyof typeof q.options]}
-                          </span>
-                        </p>
-                        {!isCorrect && (
-                          <p className="text-sm mt-1">
-                            <span className="text-muted-foreground">Correct answer: </span>
-                            <span className="text-success">
-                              {q.answer}. {q.options[q.answer as keyof typeof q.options]}
-                            </span>
-                          </p>
-                        )}
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              );
-            })}
-          </div>
-
-          <div className="flex gap-4">
-            {passed ? (
-              <Button onClick={onComplete} className="w-full" size="lg">
-                Complete Lesson
-              </Button>
-            ) : (
+          {!passed && (
+            <div className="flex gap-4">
               <Button onClick={handleRetake} className="w-full" size="lg" variant="outline">
                 Retake Quiz
               </Button>
-            )}
-          </div>
+            </div>
+          )}
         </CardContent>
       </Card>
     );
