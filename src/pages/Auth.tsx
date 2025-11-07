@@ -6,6 +6,13 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
+import { z } from "zod";
+
+const authSchema = z.object({
+  email: z.string().trim().email("Invalid email address").max(255, "Email must be less than 255 characters"),
+  password: z.string().min(12, "Password must be at least 12 characters").max(72, "Password must be less than 72 characters"),
+  fullName: z.string().trim().min(2, "Name must be at least 2 characters").max(100, "Name must be less than 100 characters").optional(),
+});
 
 const Auth = () => {
   const navigate = useNavigate();
@@ -29,10 +36,17 @@ const Auth = () => {
     setLoading(true);
 
     try {
+      // Validate inputs
+      const validationData = isLogin 
+        ? { email, password }
+        : { email, password, fullName };
+      
+      const validated = authSchema.parse(validationData);
+
       if (isLogin) {
         const { error } = await supabase.auth.signInWithPassword({
-          email,
-          password,
+          email: validated.email,
+          password: validated.password,
         });
 
         if (error) throw error;
@@ -40,12 +54,12 @@ const Auth = () => {
         navigate("/");
       } else {
         const { error } = await supabase.auth.signUp({
-          email,
-          password,
+          email: validated.email,
+          password: validated.password,
           options: {
             emailRedirectTo: `${window.location.origin}/`,
             data: {
-              full_name: fullName,
+              full_name: validated.fullName,
             },
           },
         });
@@ -55,7 +69,11 @@ const Auth = () => {
         setIsLogin(true);
       }
     } catch (error: any) {
-      toast.error(error.message || "An error occurred");
+      if (error instanceof z.ZodError) {
+        toast.error(error.errors[0].message);
+      } else {
+        toast.error("Authentication failed. Please check your credentials.");
+      }
     } finally {
       setLoading(false);
     }
@@ -106,8 +124,8 @@ const Auth = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                placeholder="Enter your password"
-                minLength={6}
+                placeholder="Enter your password (min 12 characters)"
+                minLength={12}
               />
             </div>
             <Button type="submit" className="w-full" disabled={loading}>
