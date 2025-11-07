@@ -1,11 +1,19 @@
 import { BookOpen, LogOut } from "lucide-react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "./ui/button";
 import { toast } from "sonner";
 
 export const Header = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleDashboardClick = (e: React.MouseEvent) => {
+    if (location.pathname === "/") {
+      e.preventDefault();
+      toast.info("You are already on the dashboard");
+    }
+  };
 
   const handleLogout = async () => {
     const { error } = await supabase.auth.signOut();
@@ -31,11 +39,8 @@ export const Header = () => {
         </Link>
         
         <nav className="flex items-center gap-6">
-          <Link to="/" className="text-sm font-medium hover:text-primary transition-colors hidden md:inline">
+          <Link to="/" onClick={handleDashboardClick} className="text-sm font-medium hover:text-primary transition-colors hidden md:inline">
             Dashboard
-          </Link>
-          <Link to="/courses" className="text-sm font-medium hover:text-primary transition-colors hidden md:inline">
-            All Modules
           </Link>
           <Button variant="ghost" size="sm" onClick={handleLogout}>
             <LogOut className="w-4 h-4 mr-2" />
