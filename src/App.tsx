@@ -8,6 +8,8 @@ import CoursePage from "./pages/CoursePage";
 import LessonPage from "./pages/LessonPage";
 import NotFound from "./pages/NotFound";
 import Auth from "./pages/Auth";
+import PasswordReset from "./pages/PasswordReset";
+import ResetPassword from "./pages/ResetPassword";
 import ProtectedRoute from "./components/ProtectedRoute";
 
 const queryClient = new QueryClient();
@@ -20,6 +22,8 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/auth" element={<Auth />} />
+          <Route path="/password-reset" element={<PasswordReset />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
           <Route path="/courses" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
           <Route path="/course/:courseId" element={<ProtectedRoute><CoursePage /></ProtectedRoute>} />
