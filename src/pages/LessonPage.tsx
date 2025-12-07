@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Quiz } from "@/components/Quiz";
+import { PoemTypesGuide } from "@/components/PoemTypesGuide";
 import { coursesData } from "@/data/coursesData";
 import { ArrowLeft, CheckCircle2, ChevronRight, Lightbulb, Lock } from "lucide-react";
 import { toast } from "sonner";
@@ -17,6 +18,7 @@ const LessonPage = () => {
   const [completed, setCompleted] = useState(false);
   const [videoWatched, setVideoWatched] = useState(false);
   const [quizStarted, setQuizStarted] = useState(false);
+  const [guideCompleted, setGuideCompleted] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const lastValidTimeRef = useRef<number>(0);
   
@@ -51,10 +53,12 @@ const LessonPage = () => {
     // Check if current lesson is already completed
     if (lessonId && lessonsCompletions[lessonId]) {
       setCompleted(true);
+      setGuideCompleted(true);
     } else {
       setCompleted(false);
       setVideoWatched(false);
       setQuizStarted(false);
+      setGuideCompleted(false);
     }
   }, [courseId, lessonId, lessonsCompletions]);
 
@@ -68,8 +72,9 @@ const LessonPage = () => {
   const isCompleted = completed;
   const hasVideo = !!lesson.content.videoUrl;
   const hasQuiz = !!lesson.content.quizQuestions;
+  const hasPoemGuide = !!lesson.content.poemTypesGuide;
   
-  // Check if previous lesson (video) is completed for quiz access
+  // Check if previous lesson (video or guide) is completed for quiz access
   const isPreviousLessonCompleted = previousLesson ? lessonsCompletions[previousLesson.id] : true;
   const isQuizLocked = hasQuiz && (!isPreviousLessonCompleted || (isFinalQuiz && !allModulesCompleted));
 
@@ -107,6 +112,18 @@ const LessonPage = () => {
 
   const handleQuizStart = () => {
     setQuizStarted(true);
+  };
+
+  const handleGuideComplete = async () => {
+    setGuideCompleted(true);
+    setCompleted(true);
+    
+    // Save progress to database
+    if (lessonId) {
+      await markLessonComplete(lessonId);
+    }
+    
+    toast.success("Guide completed! You can now proceed to the quiz.");
   };
 
   if (loading || progressLoading) {
@@ -234,6 +251,28 @@ const LessonPage = () => {
                     <CheckCircle2 className="w-4 h-4" />
                     Lesson completed! You can re-watch the video anytime.
                   </p>
+                </CardContent>
+              </Card>
+            )}
+
+            {/* Poem Types Guide */}
+            {hasPoemGuide && !isCompleted && (
+              <div className="mb-8">
+                <PoemTypesGuide 
+                  poemTypes={lesson.content.poemTypesGuide!}
+                  onComplete={handleGuideComplete}
+                  isCompleted={guideCompleted}
+                />
+              </div>
+            )}
+
+            {hasPoemGuide && isCompleted && (
+              <Card className="mb-8 border-success bg-success/5">
+                <CardContent className="pt-6">
+                  <div className="flex items-center gap-2 text-success">
+                    <CheckCircle2 className="w-5 h-5" />
+                    <span className="font-medium">Poetry guide completed!</span>
+                  </div>
                 </CardContent>
               </Card>
             )}
