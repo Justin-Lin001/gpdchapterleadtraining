@@ -9,19 +9,6 @@ export interface QuizQuestion {
   answer: string;
 }
 
-export interface PoemType {
-  name: string;
-  description: string;
-  rules: string[];
-  example?: {
-    title?: string;
-    lines: string[];
-  };
-  moreReading?: {
-    lines: string[];
-  };
-}
-
 export interface Lesson {
   id: string;
   title: string;
@@ -31,8 +18,10 @@ export interface Lesson {
     title: string;
     description: string;
     videoUrl?: string;
+    youtubeUrl?: string;
+    externalDocUrl?: string;
+    externalDocTitle?: string;
     quizQuestions?: QuizQuestion[];
-    poemTypesGuide?: PoemType[];
     sections: {
       heading: string;
       content: string;
@@ -59,13 +48,13 @@ export const coursesData: Course[] = [
     description: "Learn how to find and connect with senior homes in your community.",
     category: "Leadership",
     lessons: 2,
-    duration: "45 min",
+    duration: "15 min",
     progress: 0,
     lessonsList: [
       {
         id: "lesson-1",
         title: "Introduction Video",
-        duration: "25 min",
+        duration: "5 min",
         completed: false,
         content: {
           title: "Finding A Senior Home - Introduction",
@@ -78,7 +67,7 @@ export const coursesData: Course[] = [
       {
         id: "lesson-2",
         title: "Module 1 Quiz",
-        duration: "20 min",
+        duration: "10 min",
         completed: false,
         content: {
           title: "Module 1 Knowledge Check",
@@ -196,14 +185,14 @@ export const coursesData: Course[] = [
     title: "Module 2: What To Do During Sessions",
     description: "Learn how to conduct effective and engaging sessions at senior homes.",
     category: "Workshop Skills",
-    lessons: 3,
-    duration: "60 min",
+    lessons: 4,
+    duration: "25 min",
     progress: 0,
     lessonsList: [
       {
         id: "lesson-1",
         title: "Introduction Video",
-        duration: "25 min",
+        duration: "5 min",
         completed: false,
         content: {
           title: "What To Do During Sessions - Introduction",
@@ -216,220 +205,34 @@ export const coursesData: Course[] = [
       {
         id: "lesson-2",
         title: "Poem Types Guide",
-        duration: "15 min",
+        duration: "5 min",
         completed: false,
         content: {
           title: "Poetry Types Guide",
-          description: "Learn about different poetry types you can use during sessions with seniors. Scroll through the entire guide to unlock the quiz.",
-          poemTypesGuide: [
-            {
-              name: "Haiku",
-              description: "A traditional Japanese form of poetry that emphasizes simplicity, intensity, and directness. Usually focuses on nature or seasons.",
-              rules: ["Line 1: Five syllables", "Line 2: Seven syllables", "Line 3: Five syllables"],
-              example: {
-                lines: ["The wind blows softly,", "Leaves falling, a golden dance,", "Autumn whispers close."]
-              },
-              moreReading: {
-                lines: ["Snow falls silently,", "Covering the earth with peace,", "Winter's gentle touch."]
-              }
-            },
-            {
-              name: "Limerick",
-              description: "A humorous and often nonsensical five-line poem with a bouncy rhythm. It usually has a playful tone and can be used for light-hearted, amusing themes.",
-              rules: ["Rhyming Scheme: AABBA", "Line 1: Eight syllables", "Line 2: Eight syllables", "Line 3: Five syllables", "Line 4: Five syllables", "Line 5: Eight syllables"],
-              example: {
-                lines: ["There once was a man from Peru,", "Who dreamed he was eating his shoe.", "He awoke with a fright", "In the middle of night,", "And found that his dream had come true!"]
-              },
-              moreReading: {
-                lines: ["There once was a frog on a log,", "Who loves to sit there and write blogs.", "He typed day and night,", "By the soft moonlight,", "Till he fell asleep in the fog!"]
-              }
-            },
-            {
-              name: "Ballad",
-              description: "A narrative poem that tells a story, often about love, adventure, or tragedy, traditionally with a musical rhythm.",
-              rules: ["Rhyming Scheme: ABCB or ABAB"],
-              example: {
-                lines: ["The wind was cold, the night was dark,", "A ship sailed on the sea,", "Its crew were silent as they went,", "For ghosts they thought they'd see."]
-              },
-              moreReading: {
-                lines: ["She walked the hills at break of day,", "The sun yet scarce did rise,", "And there she found her true love lay,", "With sorrow in her eyes."]
-              }
-            },
-            {
-              name: "Acrostic",
-              description: "A modern-poem in which certain letters of each line combine to spell out a word, name, or phrase when read vertically.",
-              rules: ["The first letter of each line spells out a word or message"],
-              example: {
-                lines: ["Hearts beat with joy anew,", "Opening wide to embrace,", "Promising better tomorrows,", "Everlasting is its grace."]
-              },
-              moreReading: {
-                lines: ["Lingers long in silent thoughts,", "Over rivers, seas, and skies,", "Veiled in beauty, warm and bright,", "Endless as the stars at night."]
-              }
-            },
-            {
-              name: "Cinquain",
-              description: "A five-line poem that follows a specific syllabic structure.",
-              rules: ["Line 1: 2 syllables", "Line 2: 4 syllables", "Line 3: 6 syllables", "Line 4: 8 syllables", "Line 5: 2 syllables"],
-              example: {
-                lines: ["Gentle", "Breeze in the night,", "Whispering soft secrets,", "Cradling the trees in warm arms,", "Silent."]
-              },
-              moreReading: {
-                lines: ["Sunrise", "Fills the sky wide,", "Colors blend and collide,", "Hope sparkles in the light of dawn,", "Alive."]
-              }
-            },
-            {
-              name: "List Poem",
-              description: "A poem that catalogs ideas, objects, or thoughts. It's great for personal expression and creativity.",
-              rules: ["No set rhyme or meter", "Focus on listing related items or concepts"],
-              example: {
-                title: "Things I find in the night:",
-                lines: ["Moonlight on quiet streets,", "Crickets singing their endless song,", "A warm breeze whispering secrets."]
-              },
-              moreReading: {
-                lines: ["Things that make me smile:", "A child's laughter,", "Freshly baked bread,", "A handwritten note."]
-              }
-            },
-            {
-              name: "Colour Poem",
-              description: "A poem inspired by a single color, describing its emotions, objects, and imagery.",
-              rules: ["Focus on one color as the theme", "No fixed rhyme or meter"],
-              example: {
-                lines: ["Red is the color of fire,", "Of roses in full bloom,", "Of sunsets blazing in the sky,", "Of hearts beating in a room."]
-              },
-              moreReading: {
-                lines: ["Blue is the color of oceans wide,", "Of skies that stretch to the sun.", "Blue is the feeling of gentle waves,", "And dreams when the day is done."]
-              }
-            },
-            {
-              name: "Alphabet Poem",
-              description: "Each line starts with the next letter of the alphabet. It's fun and playful!",
-              rules: ["Each line begins with the next sequential letter", "No set amount of lines"],
-              example: {
-                lines: ["Apples grow on trees so high,", "Birds above them in the sky,", "Clouds drift slowly, soft and white,", "Day turns into peaceful night."]
-              },
-              moreReading: {
-                lines: ["Gardens bloom in colors bright,", "Hummingbirds hover in gentle flight.", "Ice melts slowly in the sun,", "Joyful laughter has begun."]
-              }
-            },
-            {
-              name: "Tercet",
-              description: "A three-line poem where at least two lines rhyme (AAB or ABA). Often used for short, impactful ideas.",
-              rules: ["Three lines, two or all rhyme", "Common rhyme schemes: AAB or ABA"],
-              example: {
-                lines: ["The sky is blue,", "The grass is new,", "The flowers dance with morning dew."]
-              },
-              moreReading: {
-                lines: ["The wind blows fast, the trees do bend,", "A storm will come, but it will end.", "The sun will shine, the world will mend."]
-              }
-            },
-            {
-              name: "Ode",
-              description: "An ode is a lyrical poem that expresses deep admiration or praise for a subject, often written in an elaborate and serious tone. It can focus on a person, place, object, or idea.",
-              rules: ["Often have 10+ lines", "Written in formal language", "Express deep emotion or admiration"],
-              example: {
-                title: "Ode to the Morning Sun",
-                lines: ["O golden light that wakes the earth,", "A beacon bright, a day's new birth.", "Your gentle rays embrace the sky,", "As birds take flight and dreams rise high.", "", "Through mist and shadow, soft you gleam,", "A painter's stroke, a poet's dream.", "O guiding glow, so warm, so true,", "The world awakens—all for you."]
-              }
-            },
-            {
-              name: "Free Verse",
-              description: "Originated from French \"vers libre\" in the late 19th century, free verse is a type of poetry that doesn't have strict rules on meter or rhyme.",
-              rules: ["No set rhyme or rhythm", "Can be structured however the poet wishes"],
-              example: {
-                lines: ["The wind hums a secret,", "rustling through the silent trees,", "whispering dreams to the stars."]
-              },
-              moreReading: {
-                lines: ["A kite soars high in the blue,", "laughter dances in the breeze.", "Soft grass tickles my toes,", "the sun winks through the trees.", "Today feels like a dream."]
-              }
-            },
-            {
-              name: "Tanka",
-              description: "\"Short song\" in Japanese that dates back over 1,300 years. Tanka poems are expressive and emotional, often focusing on nature, love, seasons, reflection, or fleeting beauty.",
-              rules: ["Line one: 5 syllables", "Line two: 7 syllables", "Line three: 5 syllables", "Line four: 7 syllables", "Line five: 7 syllables", "Uses imagery, metaphor, or subtle mood shifts"],
-              example: {
-                lines: ["Morning dew clings tight", "to the edge of every leaf", "silent and glowing—", "as if the world holds its breath,", "waiting for the sun to rise."]
-              },
-              moreReading: {
-                lines: ["Laughter like birdsong", "bounces off the morning walls—", "toast pops, tea is warm,", "sunlight spills across the floor,", "and I forget to worry."]
-              }
-            },
-            {
-              name: "What If?",
-              description: "Starting with a \"What if…?\" scenario, exploring creative thinking, playful writing, and reflection through poetry.",
-              rules: ["Start with a \"What if...\" question", "Explore the scenario creatively"],
-              example: {
-                title: "What if cookies grew on trees?",
-                lines: ["I'd plant a chocolate chip or two,", "And water them with milky dew.", "Each branch would droop with gooey cheer—", "Dessert would bloom all through the year!"]
-              },
-              moreReading: {
-                lines: ["What if I stayed in Paris that summer?", "Would I have married a painter, not an accountant?", "Would my windows still face the sea?", "Or would I still miss my tiny backyard swing?", "Life's paths fork, but I always carry both."]
-              }
-            },
-            {
-              name: "Creative Writing",
-              description: "Pick any of the following prompts or create your own, and write away! Make it 3-5 sentences long.",
-              rules: ["Pick a prompt or create your own", "Write 3-5 sentences"],
-              example: {
-                title: "The Morning Everything Spoke",
-                lines: ["I woke up and heard my nightstand talk.", "It said, \"You sleep too much. I've held your water glass for years!\"", "The armchair sighed. \"You always sit on the couch. I'm softer.\"", "The mirror winked and said, \"I only judge a little.\""]
-              },
-              moreReading: {
-                lines: ["Funny Day", "On Funny Day, everyone wears silly clothes.", "People talk in rhymes all day.", "We make pretend creatures from paper and string.", "Then we walk them in a big parade.", "At sunset, we pop balloons with jokes inside.", "Everyone laughs. No one is serious."]
-              }
-            },
-            {
-              name: "Repetition",
-              description: "Pick any of the following prompts or create your own, and write away! Make it 3-5 sentences long.",
-              rules: ["Use a repeating phrase or structure", "Build rhythm through repetition"],
-              example: {
-                title: "The Summer in my Memory",
-                lines: ["I remember the swing on the old oak tree.", "I remember the scent of apple pie.", "I remember the hush of Sunday mornings.", "I remember the stories by candlelight.", "I remember, and it brings me home."]
-              },
-              moreReading: {
-                lines: ["I'm Car Sick", "I'm car sick. Open a window.", "I'm car sick. Take this pill.", "I'm car sick. Rest your eyes.", "I'm car sick. Shhh. Be still.", "I'm car sick. Drink some ginger ale.", "I'm car sick. Can you try to wait?", "I'm car sick. Now we're almost there.", "I feel better. Now it's too late."]
-              }
-            },
-            {
-              name: "Nonet",
-              description: "A nonet is a nine-line poem that decreases by one syllable per line, from nine to one. Its origin is unclear, but it likely stems from the musical term for a group of nine and became popular online.",
-              rules: ["Line one: 9 syllables", "Line two: 8 syllables", "Line three: 7 syllables", "Line four: 6 syllables", "...", "Line nine: 1 syllable"],
-              example: {
-                lines: ["The autumn sun rests on golden leaves (9)", "Soft whispers drift across the still lake (8)", "Geese trace letters in the blue sky (7)", "My hands remember warm tea (6)", "The chair rocks in rhythm (5)", "Pages turn slowly (4)", "Eyes close now (3)", "To rest (2)", "Home (1)"]
-              }
-            },
-            {
-              name: "Concrete Poem",
-              description: "Concrete poetry (also called shape poetry) is when the visual arrangement of words on the page forms a shape or image that reflects the poem's subject. The layout is just as important as the words themselves.",
-              rules: ["No strict rules about syllables, rhyming or theme", "The words, letters, or lines must be arranged to create a shape or image that visually represents the theme or subject of the poem"]
-            },
-            {
-              name: "Pastoral",
-              description: "A traditional poetry style, peaceful reflection on rural life, this poem type highlights nature's calm as an escape from the noise of the city. It captures the quiet beauty of open fields and the contentment found in simplicity.",
-              rules: ["No strict rhyme or meter (often smooth)", "Idealized rural or natural setting", "Themes of love, loss, simplicity, nostalgia, or peace", "May critique city life through allegory or satire"],
-              example: {
-                lines: ["Soft wind through tall grass,", "where quiet mornings wander", "over open fields", "the shepherd hums to the dawn,", "unbothered by the city's noise."]
-              },
-              moreReading: {
-                lines: ["The river moves slow,", "mirroring a cloudless sky", "stories in its flow.", "Here, time forgets its duty,", "and the heart learns how to rest."]
-              }
-            },
-            {
-              name: "Tricubes",
-              description: "Introduced by Philip Larrea, this contemporary poem is all about the power of three. A simple form, there are no rules about rhyme or meter, the focus is all on the number three.",
-              rules: ["3 stanzas of 3 lines each", "Each line has 3 syllables"],
-              example: {
-                lines: ["He found her", "once again", "lost in dreams", "", "She surmised", "he forgot", "her nature", "", "She's always", "a dreamer", "lost in thought"]
-              }
-            }
-          ],
+          description: "Review the different poetry types you can use during sessions with seniors.",
+          externalDocUrl: "https://docs.google.com/document/d/1KQiAReK-b9eoxfcUBjud-lIY-6qDMZ7lX-vESzt9p6E/edit?tab=t.0",
+          externalDocTitle: "Poem Types Reference Guide",
           sections: [],
           keyTakeaways: []
         }
       },
       {
         id: "lesson-3",
+        title: "Session Example Video",
+        duration: "5 min",
+        completed: false,
+        content: {
+          title: "Session Example",
+          description: "Watch this video to see an example of a session in action.",
+          youtubeUrl: "https://www.youtube.com/watch?v=ydSoe1THg2g&t=170s",
+          sections: [],
+          keyTakeaways: []
+        }
+      },
+      {
+        id: "lesson-4",
         title: "Module 2 Quiz",
-        duration: "20 min",
+        duration: "10 min",
         completed: false,
         content: {
           title: "Module 2 Knowledge Check",
@@ -543,18 +346,42 @@ export const coursesData: Course[] = [
     ]
   },
   {
+    id: "session-example",
+    title: "Module 3: Session Example",
+    description: "Watch a real session example to see best practices in action.",
+    category: "Practical",
+    lessons: 1,
+    duration: "5 min",
+    progress: 0,
+    lessonsList: [
+      {
+        id: "lesson-1",
+        title: "Session Example Video",
+        duration: "5 min",
+        completed: false,
+        content: {
+          title: "Session Example",
+          description: "Watch this video to see an example of how to run a session with seniors.",
+          youtubeUrl: "https://www.youtube.com/watch?v=ydSoe1THg2g&t=170s",
+          sections: [],
+          keyTakeaways: []
+        }
+      }
+    ]
+  },
+  {
     id: "community-impact",
-    title: "Module 3: Reporting Progress",
+    title: "Module 4: Reporting Progress",
     description: "Learn how to effectively report and communicate your chapter's progress.",
     category: "Impact",
     lessons: 2,
-    duration: "45 min",
+    duration: "15 min",
     progress: 0,
     lessonsList: [
       {
         id: "lesson-1",
         title: "Introduction Video",
-        duration: "25 min",
+        duration: "5 min",
         completed: false,
         content: {
           title: "Reporting Progress - Introduction",
@@ -566,11 +393,11 @@ export const coursesData: Course[] = [
       },
       {
         id: "lesson-2",
-        title: "Module 3 Quiz",
-        duration: "20 min",
+        title: "Module 4 Quiz",
+        duration: "10 min",
         completed: false,
         content: {
-          title: "Module 3 Knowledge Check",
+          title: "Module 4 Knowledge Check",
           description: "Test your understanding of the key concepts about reporting progress.",
           quizQuestions: [
             {
@@ -682,17 +509,17 @@ export const coursesData: Course[] = [
   },
   {
     id: "troubleshooting",
-    title: "Module 4: Troubleshooting and Volunteering Guide",
+    title: "Module 5: Troubleshooting and Volunteering Guide",
     description: "Learn how to handle common challenges and effectively manage volunteers.",
     category: "Operations",
     lessons: 3,
-    duration: "60 min",
+    duration: "20 min",
     progress: 0,
     lessonsList: [
       {
         id: "lesson-1",
         title: "Troubleshooting - Part 1",
-        duration: "20 min",
+        duration: "5 min",
         completed: false,
         content: {
           title: "Troubleshooting Common Challenges - Part 1",
@@ -705,7 +532,7 @@ export const coursesData: Course[] = [
       {
         id: "lesson-2",
         title: "Volunteering Guide - Part 2",
-        duration: "20 min",
+        duration: "5 min",
         completed: false,
         content: {
           title: "Working with Seniors and Managing Volunteers - Part 2",
@@ -717,11 +544,11 @@ export const coursesData: Course[] = [
       },
       {
         id: "lesson-3",
-        title: "Module 4 Quiz",
-        duration: "20 min",
+        title: "Module 5 Quiz",
+        duration: "10 min",
         completed: false,
         content: {
-          title: "Module 4 Knowledge Check",
+          title: "Module 5 Knowledge Check",
           description: "Test your understanding of troubleshooting and volunteer management.",
           quizQuestions: [
             {
@@ -833,17 +660,17 @@ export const coursesData: Course[] = [
   },
   {
     id: "final-quiz",
-    title: "Module 5: Final Quiz",
+    title: "Module 6: Final Quiz",
     description: "Test your comprehensive understanding of all training modules. Requires completion of all previous modules.",
     category: "Assessment",
     lessons: 1,
-    duration: "30 min",
+    duration: "10 min",
     progress: 0,
     lessonsList: [
       {
         id: "lesson-1",
         title: "Final Quiz",
-        duration: "30 min",
+        duration: "10 min",
         completed: false,
         content: {
           title: "Final Assessment",

@@ -6,9 +6,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Quiz } from "@/components/Quiz";
-import { PoemTypesGuide } from "@/components/PoemTypesGuide";
 import { coursesData } from "@/data/coursesData";
-import { ArrowLeft, CheckCircle2, ChevronRight, Lightbulb, Lock } from "lucide-react";
+import { ArrowLeft, CheckCircle2, ChevronRight, Lightbulb, Lock, ExternalLink, FileText } from "lucide-react";
 import { toast } from "sonner";
 import { useProgress } from "@/hooks/useProgress";
 import { useCourseProgress } from "@/hooks/useCourseProgress";
@@ -18,7 +17,7 @@ const LessonPage = () => {
   const [completed, setCompleted] = useState(false);
   const [videoWatched, setVideoWatched] = useState(false);
   const [quizStarted, setQuizStarted] = useState(false);
-  const [guideCompleted, setGuideCompleted] = useState(false);
+  const [docClicked, setDocClicked] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const lastValidTimeRef = useRef<number>(0);
   
@@ -39,7 +38,7 @@ const LessonPage = () => {
   useEffect(() => {
     if (!isFinalQuiz) return;
 
-    const requiredModules = ["leadership-basics", "creative-writing", "community-impact", "troubleshooting"];
+    const requiredModules = ["leadership-basics", "creative-writing", "session-example", "community-impact", "troubleshooting"];
     
     const allCompleted = requiredModules.every(moduleId => {
       const moduleProgress = progress[moduleId];
@@ -53,12 +52,12 @@ const LessonPage = () => {
     // Check if current lesson is already completed
     if (lessonId && lessonsCompletions[lessonId]) {
       setCompleted(true);
-      setGuideCompleted(true);
+      setDocClicked(true);
     } else {
       setCompleted(false);
       setVideoWatched(false);
       setQuizStarted(false);
-      setGuideCompleted(false);
+      setDocClicked(false);
     }
   }, [courseId, lessonId, lessonsCompletions]);
 
@@ -71,8 +70,9 @@ const LessonPage = () => {
   const previousLesson = course.lessonsList[currentIndex - 1];
   const isCompleted = completed;
   const hasVideo = !!lesson.content.videoUrl;
+  const hasYoutubeVideo = !!lesson.content.youtubeUrl;
+  const hasExternalDoc = !!lesson.content.externalDocUrl;
   const hasQuiz = !!lesson.content.quizQuestions;
-  const hasPoemGuide = !!lesson.content.poemTypesGuide;
   
   // Check if previous lesson (video or guide) is completed for quiz access
   const isPreviousLessonCompleted = previousLesson ? lessonsCompletions[previousLesson.id] : true;
@@ -114,8 +114,8 @@ const LessonPage = () => {
     setQuizStarted(true);
   };
 
-  const handleGuideComplete = async () => {
-    setGuideCompleted(true);
+  const handleDocClick = async () => {
+    setDocClicked(true);
     setCompleted(true);
     
     // Save progress to database
@@ -123,7 +123,16 @@ const LessonPage = () => {
       await markLessonComplete(lessonId);
     }
     
-    toast.success("Guide completed! You can now proceed to the quiz.");
+    toast.success("Guide opened! You can proceed to the next lesson.");
+  };
+
+  // Extract YouTube video ID
+  const getYoutubeEmbedUrl = (url: string) => {
+    const match = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&]+)/);
+    const videoId = match ? match[1] : "";
+    const timeMatch = url.match(/[?&]t=(\d+)s?/);
+    const startTime = timeMatch ? `&start=${timeMatch[1]}` : "";
+    return `https://www.youtube.com/embed/${videoId}?rel=0${startTime}`;
   };
 
   if (loading || progressLoading) {
@@ -255,23 +264,61 @@ const LessonPage = () => {
               </Card>
             )}
 
-            {/* Poem Types Guide */}
-            {hasPoemGuide && !isCompleted && (
-              <div className="mb-8">
-                <PoemTypesGuide 
-                  poemTypes={lesson.content.poemTypesGuide!}
-                  onComplete={handleGuideComplete}
-                  isCompleted={guideCompleted}
-                />
-              </div>
+            {/* YouTube Video */}
+            {hasYoutubeVideo && !isQuizLocked && (
+              <Card className="mb-8 overflow-hidden">
+                <div className="aspect-video">
+                  <iframe
+                    className="w-full h-full"
+                    src={getYoutubeEmbedUrl(lesson.content.youtubeUrl!)}
+                    title={lesson.content.title}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
+                </div>
+              </Card>
             )}
 
-            {hasPoemGuide && isCompleted && (
+            {/* External Document Link */}
+            {hasExternalDoc && !isCompleted && (
+              <Card className="mb-8 border-primary/20 hover:border-primary/40 transition-colors">
+                <CardContent className="pt-6">
+                  <a 
+                    href={lesson.content.externalDocUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={handleDocClick}
+                    className="flex items-center gap-4 p-4 rounded-lg bg-muted/50 hover:bg-muted transition-colors"
+                  >
+                    <div className="w-16 h-16 rounded-lg bg-primary/10 flex items-center justify-center">
+                      <FileText className="w-8 h-8 text-primary" />
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="font-semibold text-lg">{lesson.content.externalDocTitle || "Reference Document"}</h3>
+                      <p className="text-sm text-muted-foreground">Click to open the guide in a new tab</p>
+                    </div>
+                    <ExternalLink className="w-5 h-5 text-muted-foreground" />
+                  </a>
+                </CardContent>
+              </Card>
+            )}
+
+            {hasExternalDoc && isCompleted && (
               <Card className="mb-8 border-success bg-success/5">
                 <CardContent className="pt-6">
-                  <div className="flex items-center gap-2 text-success">
-                    <CheckCircle2 className="w-5 h-5" />
-                    <span className="font-medium">Poetry guide completed!</span>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2 text-success">
+                      <CheckCircle2 className="w-5 h-5" />
+                      <span className="font-medium">Guide completed!</span>
+                    </div>
+                    <a 
+                      href={lesson.content.externalDocUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm text-primary hover:underline flex items-center gap-1"
+                    >
+                      Open again <ExternalLink className="w-3 h-3" />
+                    </a>
                   </div>
                 </CardContent>
               </Card>
