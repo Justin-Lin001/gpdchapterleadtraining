@@ -2,8 +2,9 @@ import { Header } from "@/components/Header";
 import { CourseCard } from "@/components/CourseCard";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { coursesData } from "@/data/coursesData";
-import { BookOpen, Award } from "lucide-react";
+import { BookOpen, Award, ExternalLink } from "lucide-react";
 import heroImage from "@/assets/hero-dashboard.png";
 import { useCourseProgress } from "@/hooks/useCourseProgress";
 
@@ -55,6 +56,25 @@ const Dashboard = () => {
               <div className="absolute -top-4 -left-4 w-32 h-32 bg-secondary rounded-full opacity-20 blur-3xl" />
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Resource Center Button */}
+      <section className="container mx-auto px-4 py-4">
+        <div className="max-w-2xl mx-auto">
+          <a 
+            href="https://www.notion.so/Training-Resource-Center-23f6282eed158023a928cbe2b6f05ddb" 
+            target="_blank" 
+            rel="noopener noreferrer"
+          >
+            <Button 
+              size="lg" 
+              className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-primary-foreground shadow-lg"
+            >
+              <ExternalLink className="w-5 h-5 mr-2" />
+              Training Resource Center
+            </Button>
+          </a>
         </div>
       </section>
 
