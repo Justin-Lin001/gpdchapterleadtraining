@@ -7,7 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Quiz } from "@/components/Quiz";
 import { coursesData } from "@/data/coursesData";
-import { ArrowLeft, CheckCircle2, ChevronRight, Lightbulb, Lock, ExternalLink, FileText } from "lucide-react";
+import { ArrowLeft, CheckCircle2, ChevronRight, Lightbulb, Lock, ExternalLink, FileText, Play } from "lucide-react";
 import { toast } from "sonner";
 import { useProgress } from "@/hooks/useProgress";
 import { useCourseProgress } from "@/hooks/useCourseProgress";
@@ -137,7 +137,7 @@ const LessonPage = () => {
       await markLessonComplete(lessonId);
     }
     
-    toast.success("Video completed! You can now proceed to the next lesson.");
+    toast.success("Video opened! You can proceed to the next lesson.");
   };
 
   // Extract YouTube video ID
@@ -278,51 +278,47 @@ const LessonPage = () => {
               </Card>
             )}
 
-            {/* YouTube Video */}
+            {/* YouTube Video Link */}
             {hasYoutubeVideo && !isQuizLocked && !isCompleted && (
-              <Card className="mb-8 overflow-hidden">
-                <div className="aspect-video">
-                  <iframe
-                    className="w-full h-full"
-                    src={getYoutubeEmbedUrl(lesson.content.youtubeUrl!)}
-                    title={lesson.content.title}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  />
-                </div>
-                {!youtubeWatched && (
-                  <CardContent className="pt-4">
-                    <div className="flex items-center justify-between">
-                      <p className="text-sm text-muted-foreground flex items-center gap-2">
-                        <CheckCircle2 className="w-4 h-4" />
-                        Watch the video, then mark it as complete
-                      </p>
-                      <Button onClick={handleYoutubeComplete} size="sm">
-                        <CheckCircle2 className="w-4 h-4 mr-2" />
-                        Mark as Complete
-                      </Button>
+              <Card className="mb-8 border-primary/20 hover:border-primary/40 transition-colors">
+                <CardContent className="pt-6">
+                  <a 
+                    href={lesson.content.youtubeUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={handleYoutubeComplete}
+                    className="flex items-center gap-4 p-4 rounded-lg bg-muted/50 hover:bg-muted transition-colors"
+                  >
+                    <div className="w-16 h-16 rounded-lg bg-red-500/10 flex items-center justify-center">
+                      <Play className="w-8 h-8 text-red-500" />
                     </div>
-                  </CardContent>
-                )}
+                    <div className="flex-1">
+                      <h3 className="font-semibold text-lg">{lesson.content.title}</h3>
+                      <p className="text-sm text-muted-foreground">Click to watch the video on YouTube</p>
+                    </div>
+                    <ExternalLink className="w-5 h-5 text-muted-foreground" />
+                  </a>
+                </CardContent>
               </Card>
             )}
-            
+
             {hasYoutubeVideo && !isQuizLocked && isCompleted && (
-              <Card className="mb-8 overflow-hidden">
-                <div className="aspect-video">
-                  <iframe
-                    className="w-full h-full"
-                    src={getYoutubeEmbedUrl(lesson.content.youtubeUrl!)}
-                    title={lesson.content.title}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  />
-                </div>
-                <CardContent className="pt-4">
-                  <p className="text-sm text-success flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4" />
-                    Lesson completed! You can re-watch the video anytime.
-                  </p>
+              <Card className="mb-8 border-success bg-success/5">
+                <CardContent className="pt-6">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2 text-success">
+                      <CheckCircle2 className="w-5 h-5" />
+                      <span className="font-medium">Video completed!</span>
+                    </div>
+                    <a 
+                      href={lesson.content.youtubeUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm text-primary hover:underline flex items-center gap-1"
+                    >
+                      Watch again <ExternalLink className="w-3 h-3" />
+                    </a>
+                  </div>
                 </CardContent>
               </Card>
             )}
