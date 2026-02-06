@@ -18,6 +18,7 @@ const LessonPage = () => {
   const [videoWatched, setVideoWatched] = useState(false);
   const [quizStarted, setQuizStarted] = useState(false);
   const [docClicked, setDocClicked] = useState(false);
+  const [youtubeWatched, setYoutubeWatched] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const lastValidTimeRef = useRef<number>(0);
   
@@ -58,6 +59,7 @@ const LessonPage = () => {
       setVideoWatched(false);
       setQuizStarted(false);
       setDocClicked(false);
+      setYoutubeWatched(false);
     }
   }, [courseId, lessonId, lessonsCompletions]);
 
@@ -124,6 +126,18 @@ const LessonPage = () => {
     }
     
     toast.success("Guide opened! You can proceed to the next lesson.");
+  };
+
+  const handleYoutubeComplete = async () => {
+    setYoutubeWatched(true);
+    setCompleted(true);
+    
+    // Save progress to database
+    if (lessonId) {
+      await markLessonComplete(lessonId);
+    }
+    
+    toast.success("Video completed! You can now proceed to the next lesson.");
   };
 
   // Extract YouTube video ID
@@ -265,7 +279,7 @@ const LessonPage = () => {
             )}
 
             {/* YouTube Video */}
-            {hasYoutubeVideo && !isQuizLocked && (
+            {hasYoutubeVideo && !isQuizLocked && !isCompleted && (
               <Card className="mb-8 overflow-hidden">
                 <div className="aspect-video">
                   <iframe
@@ -276,6 +290,40 @@ const LessonPage = () => {
                     allowFullScreen
                   />
                 </div>
+                {!youtubeWatched && (
+                  <CardContent className="pt-4">
+                    <div className="flex items-center justify-between">
+                      <p className="text-sm text-muted-foreground flex items-center gap-2">
+                        <CheckCircle2 className="w-4 h-4" />
+                        Watch the video, then mark it as complete
+                      </p>
+                      <Button onClick={handleYoutubeComplete} size="sm">
+                        <CheckCircle2 className="w-4 h-4 mr-2" />
+                        Mark as Complete
+                      </Button>
+                    </div>
+                  </CardContent>
+                )}
+              </Card>
+            )}
+            
+            {hasYoutubeVideo && !isQuizLocked && isCompleted && (
+              <Card className="mb-8 overflow-hidden">
+                <div className="aspect-video">
+                  <iframe
+                    className="w-full h-full"
+                    src={getYoutubeEmbedUrl(lesson.content.youtubeUrl!)}
+                    title={lesson.content.title}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
+                </div>
+                <CardContent className="pt-4">
+                  <p className="text-sm text-success flex items-center gap-2">
+                    <CheckCircle2 className="w-4 h-4" />
+                    Lesson completed! You can re-watch the video anytime.
+                  </p>
+                </CardContent>
               </Card>
             )}
 
